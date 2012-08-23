@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE7A849F15E6D3F600340B5C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A849E15E6D3F600340B5C /* UIKit.framework */; };
+		BE7A84A115E6D3F600340B5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84A015E6D3F600340B5C /* Foundation.framework */; };
+		BE7A84A315E6D3F600340B5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84A215E6D3F600340B5C /* CoreGraphics.framework */; };
+		BE7A84A915E6D3F600340B5C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84A715E6D3F600340B5C /* InfoPlist.strings */; };
+		BE7A84AB15E6D3F600340B5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A84AA15E6D3F600340B5C /* main.m */; };
+		BE7A84AF15E6D3F600340B5C /* LQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A84AE15E6D3F600340B5C /* LQAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BE7A849A15E6D3F600340B5C /* Geotracks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geotracks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE7A849E15E6D3F600340B5C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		BE7A84A015E6D3F600340B5C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BE7A84A215E6D3F600340B5C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE7A84A615E6D3F600340B5C /* Geotracks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Geotracks-Info.plist"; sourceTree = "<group>"; };
+		BE7A84A815E6D3F600340B5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BE7A84AA15E6D3F600340B5C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BE7A84AC15E6D3F600340B5C /* Geotracks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geotracks-Prefix.pch"; sourceTree = "<group>"; };
+		BE7A84AD15E6D3F600340B5C /* LQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQAppDelegate.h; sourceTree = "<group>"; };
+		BE7A84AE15E6D3F600340B5C /* LQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE7A849715E6D3F600340B5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7A849F15E6D3F600340B5C /* UIKit.framework in Frameworks */,
+				BE7A84A115E6D3F600340B5C /* Foundation.framework in Frameworks */,
+				BE7A84A315E6D3F600340B5C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE7A848F15E6D3F600340B5C = {
+			isa = PBXGroup;
+			children = (
+				BE7A84A415E6D3F600340B5C /* Geotracks */,
+				BE7A849D15E6D3F600340B5C /* Frameworks */,
+				BE7A849B15E6D3F600340B5C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE7A849B15E6D3F600340B5C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE7A849A15E6D3F600340B5C /* Geotracks.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE7A849D15E6D3F600340B5C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE7A849E15E6D3F600340B5C /* UIKit.framework */,
+				BE7A84A015E6D3F600340B5C /* Foundation.framework */,
+				BE7A84A215E6D3F600340B5C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE7A84A415E6D3F600340B5C /* Geotracks */ = {
+			isa = PBXGroup;
+			children = (
+				BE7A84AD15E6D3F600340B5C /* LQAppDelegate.h */,
+				BE7A84AE15E6D3F600340B5C /* LQAppDelegate.m */,
+				BE7A84A515E6D3F600340B5C /* Supporting Files */,
+			);
+			path = Geotracks;
+			sourceTree = "<group>";
+		};
+		BE7A84A515E6D3F600340B5C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE7A84A615E6D3F600340B5C /* Geotracks-Info.plist */,
+				BE7A84A715E6D3F600340B5C /* InfoPlist.strings */,
+				BE7A84AA15E6D3F600340B5C /* main.m */,
+				BE7A84AC15E6D3F600340B5C /* Geotracks-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE7A849915E6D3F600340B5C /* Geotracks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE7A84B215E6D3F600340B5C /* Build configuration list for PBXNativeTarget "Geotracks" */;
+			buildPhases = (
+				BE7A849615E6D3F600340B5C /* Sources */,
+				BE7A849715E6D3F600340B5C /* Frameworks */,
+				BE7A849815E6D3F600340B5C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Geotracks;
+			productName = Geotracks;
+			productReference = BE7A849A15E6D3F600340B5C /* Geotracks.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE7A849115E6D3F600340B5C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = LQ;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = Geoloqi;
+			};
+			buildConfigurationList = BE7A849415E6D3F600340B5C /* Build configuration list for PBXProject "Geotracks" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BE7A848F15E6D3F600340B5C;
+			productRefGroup = BE7A849B15E6D3F600340B5C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE7A849915E6D3F600340B5C /* Geotracks */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE7A849815E6D3F600340B5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7A84A915E6D3F600340B5C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE7A849615E6D3F600340B5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7A84AB15E6D3F600340B5C /* main.m in Sources */,
+				BE7A84AF15E6D3F600340B5C /* LQAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BE7A84A715E6D3F600340B5C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE7A84A815E6D3F600340B5C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE7A84B015E6D3F600340B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BE7A84B115E6D3F600340B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE7A84B315E6D3F600340B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Geotracks/Geotracks-Prefix.pch";
+				INFOPLIST_FILE = "Geotracks/Geotracks-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		BE7A84B415E6D3F600340B5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Geotracks/Geotracks-Prefix.pch";
+				INFOPLIST_FILE = "Geotracks/Geotracks-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE7A849415E6D3F600340B5C /* Build configuration list for PBXProject "Geotracks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7A84B015E6D3F600340B5C /* Debug */,
+				BE7A84B115E6D3F600340B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE7A84B215E6D3F600340B5C /* Build configuration list for PBXNativeTarget "Geotracks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7A84B315E6D3F600340B5C /* Debug */,
+				BE7A84B415E6D3F600340B5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE7A849115E6D3F600340B5C /* Project object */;
+}
