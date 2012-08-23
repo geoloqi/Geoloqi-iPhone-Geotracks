@@ -11,4 +11,11 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+#import <Geoloqi.h>
+#import "LQConfig.h"
 #endif
+
+#define NSLog(args...) [[LQSession savedSession] log:args]
+#define SHOW_LOG_SETTINGS [[NSUserDefaults standardUserDefaults] boolForKey:@"com.geoloqi.geotracks.showLogSettings"]
+
+static NSString *const LQDisplayNameUserDefaultsKey = @"com.geoloqi.geotracks.LQDisplayName";

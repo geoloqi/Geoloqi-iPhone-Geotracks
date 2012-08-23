@@ -13,6 +13,15 @@
 		BE7A84A915E6D3F600340B5C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84A715E6D3F600340B5C /* InfoPlist.strings */; };
 		BE7A84AB15E6D3F600340B5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A84AA15E6D3F600340B5C /* main.m */; };
 		BE7A84AF15E6D3F600340B5C /* LQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A84AE15E6D3F600340B5C /* LQAppDelegate.m */; };
+		BE7A84CF15E6E5C600340B5C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84CC15E6E5C600340B5C /* CoreLocation.framework */; };
+		BE7A84D015E6E5C600340B5C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84CD15E6E5C600340B5C /* ImageIO.framework */; };
+		BE7A84D115E6E5C600340B5C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84CE15E6E5C600340B5C /* libsqlite3.dylib */; };
+		BE7A84D515E6E5DB00340B5C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84D215E6E5DB00340B5C /* MapKit.framework */; };
+		BE7A84D615E6E5DB00340B5C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84D315E6E5DB00340B5C /* MessageUI.framework */; };
+		BE7A84D715E6E5DB00340B5C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84D415E6E5DB00340B5C /* QuartzCore.framework */; };
+		BE7A84DE15E6E77200340B5C /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84DA15E6E77200340B5C /* CHANGELOG.md */; };
+		BE7A84DF15E6E77200340B5C /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A84DC15E6E77200340B5C /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BE7A84E015E6E77200340B5C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84DD15E6E77200340B5C /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +35,17 @@
 		BE7A84AC15E6D3F600340B5C /* Geotracks-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Geotracks-Prefix.pch"; sourceTree = "<group>"; };
 		BE7A84AD15E6D3F600340B5C /* LQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQAppDelegate.h; sourceTree = "<group>"; };
 		BE7A84AE15E6D3F600340B5C /* LQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQAppDelegate.m; sourceTree = "<group>"; };
+		BE7A84C915E6E53400340B5C /* LQConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQConfig.h; sourceTree = "<group>"; };
+		BE7A84CC15E6E5C600340B5C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		BE7A84CD15E6E5C600340B5C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		BE7A84CE15E6E5C600340B5C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		BE7A84D215E6E5DB00340B5C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		BE7A84D315E6E5DB00340B5C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		BE7A84D415E6E5DB00340B5C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BE7A84DA15E6E77200340B5C /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		BE7A84DB15E6E77200340B5C /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		BE7A84DC15E6E77200340B5C /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		BE7A84DD15E6E77200340B5C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +53,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE7A84D515E6E5DB00340B5C /* MapKit.framework in Frameworks */,
+				BE7A84D615E6E5DB00340B5C /* MessageUI.framework in Frameworks */,
+				BE7A84D715E6E5DB00340B5C /* QuartzCore.framework in Frameworks */,
+				BE7A84CF15E6E5C600340B5C /* CoreLocation.framework in Frameworks */,
+				BE7A84D015E6E5C600340B5C /* ImageIO.framework in Frameworks */,
+				BE7A84D115E6E5C600340B5C /* libsqlite3.dylib in Frameworks */,
 				BE7A849F15E6D3F600340B5C /* UIKit.framework in Frameworks */,
 				BE7A84A115E6D3F600340B5C /* Foundation.framework in Frameworks */,
 				BE7A84A315E6D3F600340B5C /* CoreGraphics.framework in Frameworks */,
@@ -62,6 +88,12 @@
 		BE7A849D15E6D3F600340B5C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE7A84D215E6E5DB00340B5C /* MapKit.framework */,
+				BE7A84D315E6E5DB00340B5C /* MessageUI.framework */,
+				BE7A84D415E6E5DB00340B5C /* QuartzCore.framework */,
+				BE7A84CC15E6E5C600340B5C /* CoreLocation.framework */,
+				BE7A84CD15E6E5C600340B5C /* ImageIO.framework */,
+				BE7A84CE15E6E5C600340B5C /* libsqlite3.dylib */,
 				BE7A849E15E6D3F600340B5C /* UIKit.framework */,
 				BE7A84A015E6D3F600340B5C /* Foundation.framework */,
 				BE7A84A215E6D3F600340B5C /* CoreGraphics.framework */,
@@ -72,8 +104,10 @@
 		BE7A84A415E6D3F600340B5C /* Geotracks */ = {
 			isa = PBXGroup;
 			children = (
+				BE7A84C915E6E53400340B5C /* LQConfig.h */,
 				BE7A84AD15E6D3F600340B5C /* LQAppDelegate.h */,
 				BE7A84AE15E6D3F600340B5C /* LQAppDelegate.m */,
+				BE7A84D815E6E5EF00340B5C /* Classes */,
 				BE7A84A515E6D3F600340B5C /* Supporting Files */,
 			);
 			path = Geotracks;
@@ -88,6 +122,25 @@
 				BE7A84AC15E6D3F600340B5C /* Geotracks-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE7A84D815E6E5EF00340B5C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BE7A84D915E6E77200340B5C /* JSONKit */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		BE7A84D915E6E77200340B5C /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				BE7A84DA15E6E77200340B5C /* CHANGELOG.md */,
+				BE7A84DB15E6E77200340B5C /* JSONKit.h */,
+				BE7A84DC15E6E77200340B5C /* JSONKit.m */,
+				BE7A84DD15E6E77200340B5C /* README.md */,
+			);
+			path = JSONKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +196,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE7A84A915E6D3F600340B5C /* InfoPlist.strings in Resources */,
+				BE7A84DE15E6E77200340B5C /* CHANGELOG.md in Resources */,
+				BE7A84E015E6E77200340B5C /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +210,7 @@
 			files = (
 				BE7A84AB15E6D3F600340B5C /* main.m in Sources */,
 				BE7A84AF15E6D3F600340B5C /* LQAppDelegate.m in Sources */,
+				BE7A84DF15E6E77200340B5C /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +250,13 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/GeoloqiSDK\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/GeoloqiSDK\"";
+				OTHER_LDFLAGS = (
+					"-lGeoloqi-Debug",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -214,8 +276,14 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/GeoloqiSDK\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-lGeoloqi-Release",
+					"-ObjC",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -262,6 +330,7 @@
 				BE7A84B415E6D3F600340B5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
