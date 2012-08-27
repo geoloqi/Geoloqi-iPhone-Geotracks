@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LQTabBarController.h"
 
-@interface LQAppDelegate : UIResponder <UIApplicationDelegate>
+static NSString *const LQHasRegisteredForPushNotificationsUserDefaultsKey = @"com.geoloqi.geotracks.defaults.user.hasRegisteredForPushNotifications";
+
+@interface LQAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) LQTabBarController *tabBarController;
+
+- (void)refreshAllSubTableViews;
+- (void)removeAnonymousBanners;
 
 @end

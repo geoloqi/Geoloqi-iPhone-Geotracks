@@ -22,6 +22,56 @@
 		BE7A84DE15E6E77200340B5C /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84DA15E6E77200340B5C /* CHANGELOG.md */; };
 		BE7A84DF15E6E77200340B5C /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A84DC15E6E77200340B5C /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BE7A84E015E6E77200340B5C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84DD15E6E77200340B5C /* README.md */; };
+		BEBB724315EC057E0007122B /* LQTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB724215EC057E0007122B /* LQTabBarController.m */; };
+		BEBB725815EC06B10007122B /* LQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB724715EC06B10007122B /* LQLoginViewController.m */; };
+		BEBB725915EC06B10007122B /* LQLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB724815EC06B10007122B /* LQLoginViewController.xib */; };
+		BEBB725A15EC06B10007122B /* LQSetupAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB724A15EC06B10007122B /* LQSetupAccountViewController.m */; };
+		BEBB725B15EC06B10007122B /* LQSetupAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB724B15EC06B10007122B /* LQSetupAccountViewController.xib */; };
+		BEBB725C15EC06B10007122B /* LQCreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB724D15EC06B10007122B /* LQCreditsViewController.m */; };
+		BEBB725D15EC06B10007122B /* LQCreditsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB724E15EC06B10007122B /* LQCreditsViewController.xib */; };
+		BEBB725E15EC06B10007122B /* LQLogoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB725015EC06B10007122B /* LQLogoCell.m */; };
+		BEBB725F15EC06B10007122B /* LQLogoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB725115EC06B10007122B /* LQLogoCell.xib */; };
+		BEBB726015EC06B10007122B /* LQPrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB725315EC06B10007122B /* LQPrivacyPolicyViewController.m */; };
+		BEBB726115EC06B10007122B /* LQPrivacyPolicyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB725415EC06B10007122B /* LQPrivacyPolicyViewController.xib */; };
+		BEBB726215EC06B10007122B /* LQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB725615EC06B10007122B /* LQSettingsViewController.m */; };
+		BEBB726315EC06B10007122B /* LQSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB725715EC06B10007122B /* LQSettingsViewController.xib */; };
+		BEBB726715EC07950007122B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB726615EC07950007122B /* MBProgressHUD.m */; };
+		BEBB727215EC08180007122B /* LQButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB726A15EC08180007122B /* LQButtonTableViewCell.m */; };
+		BEBB727315EC08180007122B /* LQButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB726B15EC08180007122B /* LQButtonTableViewCell.xib */; };
+		BEBB727415EC08180007122B /* LQTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB726D15EC08180007122B /* LQTableFooterView.m */; };
+		BEBB727515EC08180007122B /* LQTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB726E15EC08180007122B /* LQTableFooterView.xib */; };
+		BEBB727615EC08180007122B /* LQTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB727015EC08180007122B /* LQTableHeaderView.m */; };
+		BEBB727715EC08180007122B /* LQTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB727115EC08180007122B /* LQTableHeaderView.xib */; };
+		BEBB728815EC0AFC0007122B /* cartographer_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB727A15EC0AFC0007122B /* cartographer_bg.png */; };
+		BEBB728915EC0AFC0007122B /* cartographer_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB727B15EC0AFC0007122B /* cartographer_bg@2x.png */; };
+		BEBB728A15EC0AFC0007122B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB727C15EC0AFC0007122B /* logo.png */; };
+		BEBB728B15EC0AFC0007122B /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB727D15EC0AFC0007122B /* logo@2x.png */; };
+		BEBB728C15EC0AFC0007122B /* map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB727E15EC0AFC0007122B /* map-marker.png */; };
+		BEBB728D15EC0AFC0007122B /* map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB727F15EC0AFC0007122B /* map-marker@2x.png */; };
+		BEBB728E15EC0AFC0007122B /* map-x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728015EC0AFC0007122B /* map-x.png */; };
+		BEBB728F15EC0AFC0007122B /* map-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728115EC0AFC0007122B /* map-x@2x.png */; };
+		BEBB729015EC0AFC0007122B /* marker-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728215EC0AFC0007122B /* marker-shadow.png */; };
+		BEBB729115EC0AFC0007122B /* marker-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728315EC0AFC0007122B /* marker-shadow@2x.png */; };
+		BEBB729215EC0AFC0007122B /* raisedTabBarItemTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728415EC0AFC0007122B /* raisedTabBarItemTemplate.png */; };
+		BEBB729315EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728515EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png */; };
+		BEBB729415EC0AFC0007122B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728615EC0AFC0007122B /* settings.png */; };
+		BEBB729515EC0AFC0007122B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728715EC0AFC0007122B /* settings@2x.png */; };
+		BEBB729C15EC0D4F0007122B /* button_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB729615EC0D4F0007122B /* button_disabled.png */; };
+		BEBB729D15EC0D4F0007122B /* button_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB729715EC0D4F0007122B /* button_disabled@2x.png */; };
+		BEBB729E15EC0D4F0007122B /* button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB729815EC0D4F0007122B /* button_pressed.png */; };
+		BEBB729F15EC0D4F0007122B /* button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB729915EC0D4F0007122B /* button_pressed@2x.png */; };
+		BEBB72A015EC0D4F0007122B /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB729A15EC0D4F0007122B /* button.png */; };
+		BEBB72A115EC0D4F0007122B /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB729B15EC0D4F0007122B /* button@2x.png */; };
+		BEBB72BF15EC13C20007122B /* MKAnnotationView+MTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72AA15EC13C20007122B /* MKAnnotationView+MTLocation.m */; };
+		BEBB72C015EC13C20007122B /* MKMapView+MTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72AC15EC13C20007122B /* MKMapView+MTLocation.m */; };
+		BEBB72C115EC13C20007122B /* MTLocateMeBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72AE15EC13C20007122B /* MTLocateMeBarButtonItem.m */; };
+		BEBB72C215EC13C20007122B /* MTLocateMeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72B015EC13C20007122B /* MTLocateMeButton.m */; };
+		BEBB72C315EC13C20007122B /* MTLocation.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72B115EC13C20007122B /* MTLocation.bundle */; };
+		BEBB72C415EC13C20007122B /* MTLocationFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72B515EC13C20007122B /* MTLocationFunctions.m */; };
+		BEBB72C515EC13C20007122B /* MTLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72B715EC13C20007122B /* MTLocationManager.m */; };
+		BEBB72C615EC13C20007122B /* MTOneTimeLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72B915EC13C20007122B /* MTOneTimeLocationManager.m */; };
+		BEBB72C715EC13C20007122B /* MTTouchesMovedGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72BB15EC13C20007122B /* MTTouchesMovedGestureRecognizer.m */; };
+		BEBB72C815EC13C20007122B /* UIBarButtonItem+MTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72BE15EC13C20007122B /* UIBarButtonItem+MTLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +96,80 @@
 		BE7A84DB15E6E77200340B5C /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		BE7A84DC15E6E77200340B5C /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		BE7A84DD15E6E77200340B5C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		BEBB724115EC057E0007122B /* LQTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTabBarController.h; sourceTree = "<group>"; };
+		BEBB724215EC057E0007122B /* LQTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTabBarController.m; sourceTree = "<group>"; };
+		BEBB724615EC06B10007122B /* LQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQLoginViewController.h; sourceTree = "<group>"; };
+		BEBB724715EC06B10007122B /* LQLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQLoginViewController.m; sourceTree = "<group>"; };
+		BEBB724815EC06B10007122B /* LQLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQLoginViewController.xib; sourceTree = "<group>"; };
+		BEBB724915EC06B10007122B /* LQSetupAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSetupAccountViewController.h; sourceTree = "<group>"; };
+		BEBB724A15EC06B10007122B /* LQSetupAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSetupAccountViewController.m; sourceTree = "<group>"; };
+		BEBB724B15EC06B10007122B /* LQSetupAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSetupAccountViewController.xib; sourceTree = "<group>"; };
+		BEBB724C15EC06B10007122B /* LQCreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LQCreditsViewController.h; path = Tabs/Settings/LQCreditsViewController.h; sourceTree = "<group>"; };
+		BEBB724D15EC06B10007122B /* LQCreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LQCreditsViewController.m; path = Tabs/Settings/LQCreditsViewController.m; sourceTree = "<group>"; };
+		BEBB724E15EC06B10007122B /* LQCreditsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LQCreditsViewController.xib; path = Tabs/Settings/LQCreditsViewController.xib; sourceTree = "<group>"; };
+		BEBB724F15EC06B10007122B /* LQLogoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LQLogoCell.h; path = Tabs/Settings/LQLogoCell.h; sourceTree = "<group>"; };
+		BEBB725015EC06B10007122B /* LQLogoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LQLogoCell.m; path = Tabs/Settings/LQLogoCell.m; sourceTree = "<group>"; };
+		BEBB725115EC06B10007122B /* LQLogoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LQLogoCell.xib; path = Tabs/Settings/LQLogoCell.xib; sourceTree = "<group>"; };
+		BEBB725215EC06B10007122B /* LQPrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LQPrivacyPolicyViewController.h; path = Tabs/Settings/LQPrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		BEBB725315EC06B10007122B /* LQPrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LQPrivacyPolicyViewController.m; path = Tabs/Settings/LQPrivacyPolicyViewController.m; sourceTree = "<group>"; };
+		BEBB725415EC06B10007122B /* LQPrivacyPolicyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LQPrivacyPolicyViewController.xib; path = Tabs/Settings/LQPrivacyPolicyViewController.xib; sourceTree = "<group>"; };
+		BEBB725515EC06B10007122B /* LQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LQSettingsViewController.h; path = Tabs/Settings/LQSettingsViewController.h; sourceTree = "<group>"; };
+		BEBB725615EC06B10007122B /* LQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LQSettingsViewController.m; path = Tabs/Settings/LQSettingsViewController.m; sourceTree = "<group>"; };
+		BEBB725715EC06B10007122B /* LQSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LQSettingsViewController.xib; path = Tabs/Settings/LQSettingsViewController.xib; sourceTree = "<group>"; };
+		BEBB726515EC07950007122B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		BEBB726615EC07950007122B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		BEBB726915EC08180007122B /* LQButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButtonTableViewCell.h; sourceTree = "<group>"; };
+		BEBB726A15EC08180007122B /* LQButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButtonTableViewCell.m; sourceTree = "<group>"; };
+		BEBB726B15EC08180007122B /* LQButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQButtonTableViewCell.xib; sourceTree = "<group>"; };
+		BEBB726C15EC08180007122B /* LQTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTableFooterView.h; sourceTree = "<group>"; };
+		BEBB726D15EC08180007122B /* LQTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTableFooterView.m; sourceTree = "<group>"; };
+		BEBB726E15EC08180007122B /* LQTableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTableFooterView.xib; sourceTree = "<group>"; };
+		BEBB726F15EC08180007122B /* LQTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTableHeaderView.h; sourceTree = "<group>"; };
+		BEBB727015EC08180007122B /* LQTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTableHeaderView.m; sourceTree = "<group>"; };
+		BEBB727115EC08180007122B /* LQTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTableHeaderView.xib; sourceTree = "<group>"; };
+		BEBB727A15EC0AFC0007122B /* cartographer_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartographer_bg.png; sourceTree = "<group>"; };
+		BEBB727B15EC0AFC0007122B /* cartographer_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cartographer_bg@2x.png"; sourceTree = "<group>"; };
+		BEBB727C15EC0AFC0007122B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		BEBB727D15EC0AFC0007122B /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
+		BEBB727E15EC0AFC0007122B /* map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker.png"; sourceTree = "<group>"; };
+		BEBB727F15EC0AFC0007122B /* map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-marker@2x.png"; sourceTree = "<group>"; };
+		BEBB728015EC0AFC0007122B /* map-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-x.png"; sourceTree = "<group>"; };
+		BEBB728115EC0AFC0007122B /* map-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-x@2x.png"; sourceTree = "<group>"; };
+		BEBB728215EC0AFC0007122B /* marker-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-shadow.png"; sourceTree = "<group>"; };
+		BEBB728315EC0AFC0007122B /* marker-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-shadow@2x.png"; sourceTree = "<group>"; };
+		BEBB728415EC0AFC0007122B /* raisedTabBarItemTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raisedTabBarItemTemplate.png; sourceTree = "<group>"; };
+		BEBB728515EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "raisedTabBarItemTemplate@2x.png"; sourceTree = "<group>"; };
+		BEBB728615EC0AFC0007122B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		BEBB728715EC0AFC0007122B /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		BEBB729615EC0D4F0007122B /* button_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_disabled.png; sourceTree = "<group>"; };
+		BEBB729715EC0D4F0007122B /* button_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_disabled@2x.png"; sourceTree = "<group>"; };
+		BEBB729815EC0D4F0007122B /* button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_pressed.png; sourceTree = "<group>"; };
+		BEBB729915EC0D4F0007122B /* button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_pressed@2x.png"; sourceTree = "<group>"; };
+		BEBB729A15EC0D4F0007122B /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		BEBB729B15EC0D4F0007122B /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
+		BEBB72A915EC13C20007122B /* MKAnnotationView+MTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+MTLocation.h"; sourceTree = "<group>"; };
+		BEBB72AA15EC13C20007122B /* MKAnnotationView+MTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+MTLocation.m"; sourceTree = "<group>"; };
+		BEBB72AB15EC13C20007122B /* MKMapView+MTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+MTLocation.h"; sourceTree = "<group>"; };
+		BEBB72AC15EC13C20007122B /* MKMapView+MTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+MTLocation.m"; sourceTree = "<group>"; };
+		BEBB72AD15EC13C20007122B /* MTLocateMeBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLocateMeBarButtonItem.h; sourceTree = "<group>"; };
+		BEBB72AE15EC13C20007122B /* MTLocateMeBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLocateMeBarButtonItem.m; sourceTree = "<group>"; };
+		BEBB72AF15EC13C20007122B /* MTLocateMeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLocateMeButton.h; sourceTree = "<group>"; };
+		BEBB72B015EC13C20007122B /* MTLocateMeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLocateMeButton.m; sourceTree = "<group>"; };
+		BEBB72B115EC13C20007122B /* MTLocation.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MTLocation.bundle; sourceTree = "<group>"; };
+		BEBB72B215EC13C20007122B /* MTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLocation.h; sourceTree = "<group>"; };
+		BEBB72B315EC13C20007122B /* MTLocationDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLocationDefines.h; sourceTree = "<group>"; };
+		BEBB72B415EC13C20007122B /* MTLocationFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLocationFunctions.h; sourceTree = "<group>"; };
+		BEBB72B515EC13C20007122B /* MTLocationFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLocationFunctions.m; sourceTree = "<group>"; };
+		BEBB72B615EC13C20007122B /* MTLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLocationManager.h; sourceTree = "<group>"; };
+		BEBB72B715EC13C20007122B /* MTLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLocationManager.m; sourceTree = "<group>"; };
+		BEBB72B815EC13C20007122B /* MTOneTimeLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTOneTimeLocationManager.h; sourceTree = "<group>"; };
+		BEBB72B915EC13C20007122B /* MTOneTimeLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTOneTimeLocationManager.m; sourceTree = "<group>"; };
+		BEBB72BA15EC13C20007122B /* MTTouchesMovedGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTouchesMovedGestureRecognizer.h; sourceTree = "<group>"; };
+		BEBB72BB15EC13C20007122B /* MTTouchesMovedGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTouchesMovedGestureRecognizer.m; sourceTree = "<group>"; };
+		BEBB72BC15EC13C20007122B /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		BEBB72BD15EC13C20007122B /* UIBarButtonItem+MTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+MTLocation.h"; sourceTree = "<group>"; };
+		BEBB72BE15EC13C20007122B /* UIBarButtonItem+MTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+MTLocation.m"; sourceTree = "<group>"; };
+		BEBB72CC15EC23BD0007122B /* LOLDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOLDatabase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +231,11 @@
 				BE7A84C915E6E53400340B5C /* LQConfig.h */,
 				BE7A84AD15E6D3F600340B5C /* LQAppDelegate.h */,
 				BE7A84AE15E6D3F600340B5C /* LQAppDelegate.m */,
+				BEBB724115EC057E0007122B /* LQTabBarController.h */,
+				BEBB724215EC057E0007122B /* LQTabBarController.m */,
+				BEBB723F15EC050D0007122B /* Tabs */,
 				BE7A84D815E6E5EF00340B5C /* Classes */,
+				BEBB727915EC0AFB0007122B /* Graphics */,
 				BE7A84A515E6D3F600340B5C /* Supporting Files */,
 			);
 			path = Geotracks;
@@ -127,6 +255,10 @@
 		BE7A84D815E6E5EF00340B5C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BEBB72CC15EC23BD0007122B /* LOLDatabase.h */,
+				BEBB72A815EC13C20007122B /* MTLocation */,
+				BEBB726815EC08180007122B /* TableViewResources */,
+				BEBB726415EC07950007122B /* MBProgressHUD */,
 				BE7A84D915E6E77200340B5C /* JSONKit */,
 			);
 			name = Classes;
@@ -141,6 +273,129 @@
 				BE7A84DD15E6E77200340B5C /* README.md */,
 			);
 			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		BEBB723F15EC050D0007122B /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB724415EC05F40007122B /* Settings */,
+			);
+			name = Tabs;
+			sourceTree = "<group>";
+		};
+		BEBB724415EC05F40007122B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB724515EC06B10007122B /* Account */,
+				BEBB724C15EC06B10007122B /* LQCreditsViewController.h */,
+				BEBB724D15EC06B10007122B /* LQCreditsViewController.m */,
+				BEBB724E15EC06B10007122B /* LQCreditsViewController.xib */,
+				BEBB724F15EC06B10007122B /* LQLogoCell.h */,
+				BEBB725015EC06B10007122B /* LQLogoCell.m */,
+				BEBB725115EC06B10007122B /* LQLogoCell.xib */,
+				BEBB725215EC06B10007122B /* LQPrivacyPolicyViewController.h */,
+				BEBB725315EC06B10007122B /* LQPrivacyPolicyViewController.m */,
+				BEBB725415EC06B10007122B /* LQPrivacyPolicyViewController.xib */,
+				BEBB725515EC06B10007122B /* LQSettingsViewController.h */,
+				BEBB725615EC06B10007122B /* LQSettingsViewController.m */,
+				BEBB725715EC06B10007122B /* LQSettingsViewController.xib */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		BEBB724515EC06B10007122B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB724615EC06B10007122B /* LQLoginViewController.h */,
+				BEBB724715EC06B10007122B /* LQLoginViewController.m */,
+				BEBB724815EC06B10007122B /* LQLoginViewController.xib */,
+				BEBB724915EC06B10007122B /* LQSetupAccountViewController.h */,
+				BEBB724A15EC06B10007122B /* LQSetupAccountViewController.m */,
+				BEBB724B15EC06B10007122B /* LQSetupAccountViewController.xib */,
+			);
+			name = Account;
+			path = Tabs/Settings/Account;
+			sourceTree = "<group>";
+		};
+		BEBB726415EC07950007122B /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB726515EC07950007122B /* MBProgressHUD.h */,
+				BEBB726615EC07950007122B /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		BEBB726815EC08180007122B /* TableViewResources */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB726915EC08180007122B /* LQButtonTableViewCell.h */,
+				BEBB726A15EC08180007122B /* LQButtonTableViewCell.m */,
+				BEBB726B15EC08180007122B /* LQButtonTableViewCell.xib */,
+				BEBB726C15EC08180007122B /* LQTableFooterView.h */,
+				BEBB726D15EC08180007122B /* LQTableFooterView.m */,
+				BEBB726E15EC08180007122B /* LQTableFooterView.xib */,
+				BEBB726F15EC08180007122B /* LQTableHeaderView.h */,
+				BEBB727015EC08180007122B /* LQTableHeaderView.m */,
+				BEBB727115EC08180007122B /* LQTableHeaderView.xib */,
+			);
+			path = TableViewResources;
+			sourceTree = "<group>";
+		};
+		BEBB727915EC0AFB0007122B /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB729615EC0D4F0007122B /* button_disabled.png */,
+				BEBB729715EC0D4F0007122B /* button_disabled@2x.png */,
+				BEBB729815EC0D4F0007122B /* button_pressed.png */,
+				BEBB729915EC0D4F0007122B /* button_pressed@2x.png */,
+				BEBB729A15EC0D4F0007122B /* button.png */,
+				BEBB729B15EC0D4F0007122B /* button@2x.png */,
+				BEBB727A15EC0AFC0007122B /* cartographer_bg.png */,
+				BEBB727B15EC0AFC0007122B /* cartographer_bg@2x.png */,
+				BEBB727C15EC0AFC0007122B /* logo.png */,
+				BEBB727D15EC0AFC0007122B /* logo@2x.png */,
+				BEBB727E15EC0AFC0007122B /* map-marker.png */,
+				BEBB727F15EC0AFC0007122B /* map-marker@2x.png */,
+				BEBB728015EC0AFC0007122B /* map-x.png */,
+				BEBB728115EC0AFC0007122B /* map-x@2x.png */,
+				BEBB728215EC0AFC0007122B /* marker-shadow.png */,
+				BEBB728315EC0AFC0007122B /* marker-shadow@2x.png */,
+				BEBB728415EC0AFC0007122B /* raisedTabBarItemTemplate.png */,
+				BEBB728515EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png */,
+				BEBB728615EC0AFC0007122B /* settings.png */,
+				BEBB728715EC0AFC0007122B /* settings@2x.png */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		BEBB72A815EC13C20007122B /* MTLocation */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB72A915EC13C20007122B /* MKAnnotationView+MTLocation.h */,
+				BEBB72AA15EC13C20007122B /* MKAnnotationView+MTLocation.m */,
+				BEBB72AB15EC13C20007122B /* MKMapView+MTLocation.h */,
+				BEBB72AC15EC13C20007122B /* MKMapView+MTLocation.m */,
+				BEBB72AD15EC13C20007122B /* MTLocateMeBarButtonItem.h */,
+				BEBB72AE15EC13C20007122B /* MTLocateMeBarButtonItem.m */,
+				BEBB72AF15EC13C20007122B /* MTLocateMeButton.h */,
+				BEBB72B015EC13C20007122B /* MTLocateMeButton.m */,
+				BEBB72B115EC13C20007122B /* MTLocation.bundle */,
+				BEBB72B215EC13C20007122B /* MTLocation.h */,
+				BEBB72B315EC13C20007122B /* MTLocationDefines.h */,
+				BEBB72B415EC13C20007122B /* MTLocationFunctions.h */,
+				BEBB72B515EC13C20007122B /* MTLocationFunctions.m */,
+				BEBB72B615EC13C20007122B /* MTLocationManager.h */,
+				BEBB72B715EC13C20007122B /* MTLocationManager.m */,
+				BEBB72B815EC13C20007122B /* MTOneTimeLocationManager.h */,
+				BEBB72B915EC13C20007122B /* MTOneTimeLocationManager.m */,
+				BEBB72BA15EC13C20007122B /* MTTouchesMovedGestureRecognizer.h */,
+				BEBB72BB15EC13C20007122B /* MTTouchesMovedGestureRecognizer.m */,
+				BEBB72BC15EC13C20007122B /* Prefix.pch */,
+				BEBB72BD15EC13C20007122B /* UIBarButtonItem+MTLocation.h */,
+				BEBB72BE15EC13C20007122B /* UIBarButtonItem+MTLocation.m */,
+			);
+			path = MTLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +453,36 @@
 				BE7A84A915E6D3F600340B5C /* InfoPlist.strings in Resources */,
 				BE7A84DE15E6E77200340B5C /* CHANGELOG.md in Resources */,
 				BE7A84E015E6E77200340B5C /* README.md in Resources */,
+				BEBB725915EC06B10007122B /* LQLoginViewController.xib in Resources */,
+				BEBB725B15EC06B10007122B /* LQSetupAccountViewController.xib in Resources */,
+				BEBB725D15EC06B10007122B /* LQCreditsViewController.xib in Resources */,
+				BEBB725F15EC06B10007122B /* LQLogoCell.xib in Resources */,
+				BEBB726115EC06B10007122B /* LQPrivacyPolicyViewController.xib in Resources */,
+				BEBB726315EC06B10007122B /* LQSettingsViewController.xib in Resources */,
+				BEBB727315EC08180007122B /* LQButtonTableViewCell.xib in Resources */,
+				BEBB727515EC08180007122B /* LQTableFooterView.xib in Resources */,
+				BEBB727715EC08180007122B /* LQTableHeaderView.xib in Resources */,
+				BEBB728815EC0AFC0007122B /* cartographer_bg.png in Resources */,
+				BEBB728915EC0AFC0007122B /* cartographer_bg@2x.png in Resources */,
+				BEBB728A15EC0AFC0007122B /* logo.png in Resources */,
+				BEBB728B15EC0AFC0007122B /* logo@2x.png in Resources */,
+				BEBB728C15EC0AFC0007122B /* map-marker.png in Resources */,
+				BEBB728D15EC0AFC0007122B /* map-marker@2x.png in Resources */,
+				BEBB728E15EC0AFC0007122B /* map-x.png in Resources */,
+				BEBB728F15EC0AFC0007122B /* map-x@2x.png in Resources */,
+				BEBB729015EC0AFC0007122B /* marker-shadow.png in Resources */,
+				BEBB729115EC0AFC0007122B /* marker-shadow@2x.png in Resources */,
+				BEBB729215EC0AFC0007122B /* raisedTabBarItemTemplate.png in Resources */,
+				BEBB729315EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png in Resources */,
+				BEBB729415EC0AFC0007122B /* settings.png in Resources */,
+				BEBB729515EC0AFC0007122B /* settings@2x.png in Resources */,
+				BEBB729C15EC0D4F0007122B /* button_disabled.png in Resources */,
+				BEBB729D15EC0D4F0007122B /* button_disabled@2x.png in Resources */,
+				BEBB729E15EC0D4F0007122B /* button_pressed.png in Resources */,
+				BEBB729F15EC0D4F0007122B /* button_pressed@2x.png in Resources */,
+				BEBB72A015EC0D4F0007122B /* button.png in Resources */,
+				BEBB72A115EC0D4F0007122B /* button@2x.png in Resources */,
+				BEBB72C315EC13C20007122B /* MTLocation.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +496,26 @@
 				BE7A84AB15E6D3F600340B5C /* main.m in Sources */,
 				BE7A84AF15E6D3F600340B5C /* LQAppDelegate.m in Sources */,
 				BE7A84DF15E6E77200340B5C /* JSONKit.m in Sources */,
+				BEBB724315EC057E0007122B /* LQTabBarController.m in Sources */,
+				BEBB725815EC06B10007122B /* LQLoginViewController.m in Sources */,
+				BEBB725A15EC06B10007122B /* LQSetupAccountViewController.m in Sources */,
+				BEBB725C15EC06B10007122B /* LQCreditsViewController.m in Sources */,
+				BEBB725E15EC06B10007122B /* LQLogoCell.m in Sources */,
+				BEBB726015EC06B10007122B /* LQPrivacyPolicyViewController.m in Sources */,
+				BEBB726215EC06B10007122B /* LQSettingsViewController.m in Sources */,
+				BEBB726715EC07950007122B /* MBProgressHUD.m in Sources */,
+				BEBB727215EC08180007122B /* LQButtonTableViewCell.m in Sources */,
+				BEBB727415EC08180007122B /* LQTableFooterView.m in Sources */,
+				BEBB727615EC08180007122B /* LQTableHeaderView.m in Sources */,
+				BEBB72BF15EC13C20007122B /* MKAnnotationView+MTLocation.m in Sources */,
+				BEBB72C015EC13C20007122B /* MKMapView+MTLocation.m in Sources */,
+				BEBB72C115EC13C20007122B /* MTLocateMeBarButtonItem.m in Sources */,
+				BEBB72C215EC13C20007122B /* MTLocateMeButton.m in Sources */,
+				BEBB72C415EC13C20007122B /* MTLocationFunctions.m in Sources */,
+				BEBB72C515EC13C20007122B /* MTLocationManager.m in Sources */,
+				BEBB72C615EC13C20007122B /* MTOneTimeLocationManager.m in Sources */,
+				BEBB72C715EC13C20007122B /* MTTouchesMovedGestureRecognizer.m in Sources */,
+				BEBB72C815EC13C20007122B /* UIBarButtonItem+MTLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

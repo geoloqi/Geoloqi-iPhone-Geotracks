@@ -7,15 +7,64 @@
 //
 
 #import "LQAppDelegate.h"
+#import "LQSettingsViewController.h"
 
-@implementation LQAppDelegate
+@implementation LQAppDelegate {
+    LQSettingsViewController *settingsViewController;
+    UINavigationController   *settingsNavController;
+}
+
+@synthesize window;
+@synthesize tabBarController;
+
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [LQSession setAPIKey:LQ_APIKey secret:LQ_APISecret];
+    [[LQSession savedSession] log:@"didFinishLaunchingWithOptions: %@", launchOptions];
+    [[LQSession savedSession] log:@"monitored regions: %@", [[CLLocationManager new] monitoredRegions]];
+    
+    UIViewController *newTrackPlaceholderController = [UINavigationController new];
+    newTrackPlaceholderController.title = @"New Geotrack";
+    
+    settingsViewController = [LQSettingsViewController new];
+    settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    settingsNavController.navigationBar.tintColor = [UIColor blackColor];
+    
+    self.tabBarController = [LQTabBarController new];
+    self.tabBarController.delegate = self;
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                             newTrackPlaceholderController,
+                                             settingsNavController,
+                                             nil];
+    
+    [self.tabBarController addCenterButtonTarget:self action:@selector(newGeonoteButtonWasTapped:)];
+    self.window.rootViewController = self.tabBarController;
+    [self.window makeKeyAndVisible];
+    
+    if(![LQSession savedSession]) {
+		[LQSession createAnonymousUserAccountWithUserInfo:nil completion:^(LQSession *session, NSError *error) {
+			//If we successfully created an anonymous session, tell the tracker to use it
+			if (session) {
+				NSLog(@"Created an anonymous user with access token: %@", session.accessToken);
+				
+				[[LQTracker sharedTracker] setSession:session]; // This saves the session so it will be restored on next app launch
+				[[LQTracker sharedTracker] setProfile:LQTrackerProfileAdaptive]; // This will cause the location prompt to appear the first time
+			} else {
+				NSLog(@"Error creating an anonymous user: %@", error);
+			}
+		}];
+    } else {
+        NSLog(@"%@", [LQSession savedSession].accessToken);
+    }
+    
+    // Tell the SDK the app finished launching so it can properly handle push notifications, etc
+    [LQSession application:application didFinishLaunchingWithOptions:launchOptions];
+    
     return YES;
 }
 
@@ -44,6 +93,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Instance Methods
+
+- (void)refreshAllSubTableViews
+{
+    
+}
+
+- (void)removeAnonymousBanners
+{
+    
 }
 
 @end
