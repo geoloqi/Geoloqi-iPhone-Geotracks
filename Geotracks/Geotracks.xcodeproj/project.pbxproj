@@ -72,6 +72,11 @@
 		BEBB72C615EC13C20007122B /* MTOneTimeLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72B915EC13C20007122B /* MTOneTimeLocationManager.m */; };
 		BEBB72C715EC13C20007122B /* MTTouchesMovedGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72BB15EC13C20007122B /* MTTouchesMovedGestureRecognizer.m */; };
 		BEBB72C815EC13C20007122B /* UIBarButtonItem+MTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72BE15EC13C20007122B /* UIBarButtonItem+MTLocation.m */; };
+		BEBB72CE15EC25090007122B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72CD15EC25090007122B /* Settings.bundle */; };
+		BEBB72D015EC2B1F0007122B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72CF15EC2B1F0007122B /* Icon.png */; };
+		BEBB72D215EC2B230007122B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72D115EC2B230007122B /* Icon@2x.png */; };
+		BEBB72D515EC2B420007122B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72D315EC2B420007122B /* Default.png */; };
+		BEBB72D615EC2B420007122B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72D415EC2B420007122B /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +175,11 @@
 		BEBB72BD15EC13C20007122B /* UIBarButtonItem+MTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+MTLocation.h"; sourceTree = "<group>"; };
 		BEBB72BE15EC13C20007122B /* UIBarButtonItem+MTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+MTLocation.m"; sourceTree = "<group>"; };
 		BEBB72CC15EC23BD0007122B /* LOLDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOLDatabase.h; sourceTree = "<group>"; };
+		BEBB72CD15EC25090007122B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		BEBB72CF15EC2B1F0007122B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		BEBB72D115EC2B230007122B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		BEBB72D315EC2B420007122B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BEBB72D415EC2B420007122B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +205,8 @@
 		BE7A848F15E6D3F600340B5C = {
 			isa = PBXGroup;
 			children = (
+				BEBB72D115EC2B230007122B /* Icon@2x.png */,
+				BEBB72CF15EC2B1F0007122B /* Icon.png */,
 				BE7A84A415E6D3F600340B5C /* Geotracks */,
 				BE7A849D15E6D3F600340B5C /* Frameworks */,
 				BE7A849B15E6D3F600340B5C /* Products */,
@@ -248,6 +260,7 @@
 				BE7A84A715E6D3F600340B5C /* InfoPlist.strings */,
 				BE7A84AA15E6D3F600340B5C /* main.m */,
 				BE7A84AC15E6D3F600340B5C /* Geotracks-Prefix.pch */,
+				BEBB72CD15EC25090007122B /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -345,6 +358,8 @@
 		BEBB727915EC0AFB0007122B /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				BEBB72D315EC2B420007122B /* Default.png */,
+				BEBB72D415EC2B420007122B /* Default@2x.png */,
 				BEBB729615EC0D4F0007122B /* button_disabled.png */,
 				BEBB729715EC0D4F0007122B /* button_disabled@2x.png */,
 				BEBB729815EC0D4F0007122B /* button_pressed.png */,
@@ -483,6 +498,11 @@
 				BEBB72A015EC0D4F0007122B /* button.png in Resources */,
 				BEBB72A115EC0D4F0007122B /* button@2x.png in Resources */,
 				BEBB72C315EC13C20007122B /* MTLocation.bundle in Resources */,
+				BEBB72CE15EC25090007122B /* Settings.bundle in Resources */,
+				BEBB72D015EC2B1F0007122B /* Icon.png in Resources */,
+				BEBB72D215EC2B230007122B /* Icon@2x.png in Resources */,
+				BEBB72D515EC2B420007122B /* Default.png in Resources */,
+				BEBB72D615EC2B420007122B /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

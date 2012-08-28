@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "LQTabBarController.h"
 
-static NSString *const LQHasRegisteredForPushNotificationsUserDefaultsKey = @"com.geoloqi.geotracks.defaults.user.hasRegisteredForPushNotifications";
+static NSString *const LQHasRegisteredForPushNotificationsUserDefaultsKey = @"com.geoloqi.geotracks.hasRegisteredForPushNotifications";
+
+// see Settings.bundle/Root.plist
+static NSString *const LQClearLocalDatabaseUserDefaultsKey = @"com.geoloqi.geotracks.clearLocalDatabase";
+static NSString *const LQNewAccessTokenUserDefaultsKey = @"com.geoloqi.geotracks.newAccessToken";
+
+static NSString *const LQActiveTracksListCollectionName = @"LQActiveTracksListCollection";
+static NSString *const LQInactiveTracksListCollectionName = @"LQInactiveTracksListCollection";
 
 @interface LQAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 

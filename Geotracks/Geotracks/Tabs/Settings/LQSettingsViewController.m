@@ -27,7 +27,6 @@
         self.title = NSLocalizedString(@"Settings", @"Settings");
         self.tabBarItem.image = [UIImage imageNamed:@"settings"];
         NSLog(@"Settings init");
-        [[LQSession savedSession] log:@"Settings init"];
     }
     return self;
 }
@@ -37,8 +36,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     NSLog(@"Settings viewDidLoad");
-    [[LQSession savedSession] log:@"Settings viewDidLoad"];
-    
 }
 
 - (void)viewDidUnload
@@ -46,7 +43,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [[LQSession savedSession] log:@"Settings viewDidUnload"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

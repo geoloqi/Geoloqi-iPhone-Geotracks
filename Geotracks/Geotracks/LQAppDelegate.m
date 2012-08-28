@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Geoloqi. All rights reserved.
 //
 
+#import "sqlite3.h"
+
 #import "LQAppDelegate.h"
 #import "LQSettingsViewController.h"
 
@@ -28,6 +30,9 @@
     [[LQSession savedSession] log:@"didFinishLaunchingWithOptions: %@", launchOptions];
     [[LQSession savedSession] log:@"monitored regions: %@", [[CLLocationManager new] monitoredRegions]];
     
+    UIViewController *trackPlaceholderController = [UINavigationController new];
+    trackPlaceholderController.title = @"Tracks";
+    
     UIViewController *newTrackPlaceholderController = [UINavigationController new];
     newTrackPlaceholderController.title = @"New Geotrack";
     
@@ -38,6 +43,7 @@
     self.tabBarController = [LQTabBarController new];
     self.tabBarController.delegate = self;
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                             trackPlaceholderController,
                                              newTrackPlaceholderController,
                                              settingsNavController,
                                              nil];
@@ -51,9 +57,7 @@
 			//If we successfully created an anonymous session, tell the tracker to use it
 			if (session) {
 				NSLog(@"Created an anonymous user with access token: %@", session.accessToken);
-				
-				[[LQTracker sharedTracker] setSession:session]; // This saves the session so it will be restored on next app launch
-				[[LQTracker sharedTracker] setProfile:LQTrackerProfileAdaptive]; // This will cause the location prompt to appear the first time
+                [[LQTracker sharedTracker] setSession:session]; // This saves the session so it will be restored on next app launch
 			} else {
 				NSLog(@"Error creating an anonymous user: %@", error);
 			}
@@ -82,12 +86,16 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    LQSession *session = [LQSession savedSession];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (!SHOW_LOG_SETTINGS && [session fileLogging])
+        [session setFileLogging:NO];
+    [settingsViewController.tableView reloadData];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self reInitializeSessionFromSettingsPanel];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -95,7 +103,51 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - Instance Methods
+#pragma mark -
+
+// returns a path to a database file for a category
++ (NSString *)cacheDatabasePathForCategory:(NSString *)category
+{
+	NSString *caches = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	return [caches stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.lol.sqlite", category]];
+}
+
+// clears all rows from a table in a database
++ (void)deleteFromTable:(NSString *)collectionName forCategory:(NSString *)category
+{
+    sqlite3 *db;
+    if(sqlite3_open([[LQAppDelegate cacheDatabasePathForCategory:category] UTF8String], &db) == SQLITE_OK) {
+        NSString *sql = [NSString stringWithFormat:@"DELETE FROM '%@'", collectionName];
+        sqlite3_exec(db, [sql UTF8String], NULL, NULL, NULL);
+    }
+}
+
+#pragma mark -
+
+- (BOOL)reInitializeSessionFromSettingsPanel
+{
+    BOOL didSomething = NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([defaults boolForKey:LQClearLocalDatabaseUserDefaultsKey]) {
+        [LQAppDelegate deleteFromTable:LQActiveTracksListCollectionName forCategory:@"LQActiveTracks"];
+        [LQAppDelegate deleteFromTable:LQInactiveTracksListCollectionName forCategory:@"LQInactiveTracks"];
+        [defaults removeObjectForKey:LQClearLocalDatabaseUserDefaultsKey];
+        didSomething = YES;
+    }
+    
+    if([defaults valueForKey:LQNewAccessTokenUserDefaultsKey]) {
+        NSString *newAccessToken = [defaults valueForKey:LQNewAccessTokenUserDefaultsKey];
+        [defaults removeObjectForKey:LQNewAccessTokenUserDefaultsKey];
+        didSomething = YES;
+        [LQSession setSavedSession:nil];
+        LQSession *newSession = [LQSession sessionWithAccessToken:newAccessToken];
+        [LQSession setSavedSession:newSession];
+        NSLog(@"Re-initialized session!");
+    }
+    
+    return didSomething;
+}
 
 - (void)refreshAllSubTableViews
 {
