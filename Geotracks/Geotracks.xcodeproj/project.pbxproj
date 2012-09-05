@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE486A9715F7C51E00F76B4B /* newGeotrack.png in Resources */ = {isa = PBXBuildFile; fileRef = BE486A9515F7C51E00F76B4B /* newGeotrack.png */; };
+		BE486A9815F7C51E00F76B4B /* newGeotrack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE486A9615F7C51E00F76B4B /* newGeotrack@2x.png */; };
+		BE486AAB15F7CD6C00F76B4B /* LQSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE486AA815F7CD6C00F76B4B /* LQSTableViewController.m */; };
+		BE486AAC15F7CD6C00F76B4B /* STableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE486AAA15F7CD6C00F76B4B /* STableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BE7A849F15E6D3F600340B5C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A849E15E6D3F600340B5C /* UIKit.framework */; };
 		BE7A84A115E6D3F600340B5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84A015E6D3F600340B5C /* Foundation.framework */; };
 		BE7A84A315E6D3F600340B5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84A215E6D3F600340B5C /* CoreGraphics.framework */; };
@@ -52,8 +56,6 @@
 		BEBB728F15EC0AFC0007122B /* map-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728115EC0AFC0007122B /* map-x@2x.png */; };
 		BEBB729015EC0AFC0007122B /* marker-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728215EC0AFC0007122B /* marker-shadow.png */; };
 		BEBB729115EC0AFC0007122B /* marker-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728315EC0AFC0007122B /* marker-shadow@2x.png */; };
-		BEBB729215EC0AFC0007122B /* raisedTabBarItemTemplate.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728415EC0AFC0007122B /* raisedTabBarItemTemplate.png */; };
-		BEBB729315EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728515EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png */; };
 		BEBB729415EC0AFC0007122B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728615EC0AFC0007122B /* settings.png */; };
 		BEBB729515EC0AFC0007122B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB728715EC0AFC0007122B /* settings@2x.png */; };
 		BEBB729C15EC0D4F0007122B /* button_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB729615EC0D4F0007122B /* button_disabled.png */; };
@@ -77,9 +79,19 @@
 		BEBB72D215EC2B230007122B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72D115EC2B230007122B /* Icon@2x.png */; };
 		BEBB72D515EC2B420007122B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72D315EC2B420007122B /* Default.png */; };
 		BEBB72D615EC2B420007122B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72D415EC2B420007122B /* Default@2x.png */; };
+		BEBB72E415ED448C0007122B /* tracks.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E215ED448C0007122B /* tracks.png */; };
+		BEBB72E515ED448C0007122B /* tracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E315ED448C0007122B /* tracks@2x.png */; };
+		BEBB72EA15ED473E0007122B /* LQTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72E815ED473E0007122B /* LQTracksViewController.m */; };
+		BEBB72EB15ED473E0007122B /* LQTracksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E915ED473E0007122B /* LQTracksViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE486A9515F7C51E00F76B4B /* newGeotrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newGeotrack.png; sourceTree = "<group>"; };
+		BE486A9615F7C51E00F76B4B /* newGeotrack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newGeotrack@2x.png"; sourceTree = "<group>"; };
+		BE486AA715F7CD6C00F76B4B /* LQSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSTableViewController.h; sourceTree = "<group>"; };
+		BE486AA815F7CD6C00F76B4B /* LQSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSTableViewController.m; sourceTree = "<group>"; };
+		BE486AA915F7CD6C00F76B4B /* STableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STableViewController.h; sourceTree = "<group>"; };
+		BE486AAA15F7CD6C00F76B4B /* STableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STableViewController.m; sourceTree = "<group>"; };
 		BE7A849A15E6D3F600340B5C /* Geotracks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geotracks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7A849E15E6D3F600340B5C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BE7A84A015E6D3F600340B5C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -142,8 +154,6 @@
 		BEBB728115EC0AFC0007122B /* map-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-x@2x.png"; sourceTree = "<group>"; };
 		BEBB728215EC0AFC0007122B /* marker-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-shadow.png"; sourceTree = "<group>"; };
 		BEBB728315EC0AFC0007122B /* marker-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "marker-shadow@2x.png"; sourceTree = "<group>"; };
-		BEBB728415EC0AFC0007122B /* raisedTabBarItemTemplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raisedTabBarItemTemplate.png; sourceTree = "<group>"; };
-		BEBB728515EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "raisedTabBarItemTemplate@2x.png"; sourceTree = "<group>"; };
 		BEBB728615EC0AFC0007122B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		BEBB728715EC0AFC0007122B /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		BEBB729615EC0D4F0007122B /* button_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_disabled.png; sourceTree = "<group>"; };
@@ -180,6 +190,11 @@
 		BEBB72D115EC2B230007122B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		BEBB72D315EC2B420007122B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		BEBB72D415EC2B420007122B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BEBB72E215ED448C0007122B /* tracks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tracks.png; sourceTree = "<group>"; };
+		BEBB72E315ED448C0007122B /* tracks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tracks@2x.png"; sourceTree = "<group>"; };
+		BEBB72E715ED473E0007122B /* LQTracksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTracksViewController.h; sourceTree = "<group>"; };
+		BEBB72E815ED473E0007122B /* LQTracksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTracksViewController.m; sourceTree = "<group>"; };
+		BEBB72E915ED473E0007122B /* LQTracksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTracksViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +283,10 @@
 		BE7A84D815E6E5EF00340B5C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BE486AA715F7CD6C00F76B4B /* LQSTableViewController.h */,
+				BE486AA815F7CD6C00F76B4B /* LQSTableViewController.m */,
+				BE486AA915F7CD6C00F76B4B /* STableViewController.h */,
+				BE486AAA15F7CD6C00F76B4B /* STableViewController.m */,
 				BEBB72CC15EC23BD0007122B /* LOLDatabase.h */,
 				BEBB72A815EC13C20007122B /* MTLocation */,
 				BEBB726815EC08180007122B /* TableViewResources */,
@@ -291,6 +310,7 @@
 		BEBB723F15EC050D0007122B /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				BEBB72E615ED471D0007122B /* Tracks */,
 				BEBB724415EC05F40007122B /* Settings */,
 			);
 			name = Tabs;
@@ -376,10 +396,12 @@
 				BEBB728115EC0AFC0007122B /* map-x@2x.png */,
 				BEBB728215EC0AFC0007122B /* marker-shadow.png */,
 				BEBB728315EC0AFC0007122B /* marker-shadow@2x.png */,
-				BEBB728415EC0AFC0007122B /* raisedTabBarItemTemplate.png */,
-				BEBB728515EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png */,
+				BE486A9515F7C51E00F76B4B /* newGeotrack.png */,
+				BE486A9615F7C51E00F76B4B /* newGeotrack@2x.png */,
 				BEBB728615EC0AFC0007122B /* settings.png */,
 				BEBB728715EC0AFC0007122B /* settings@2x.png */,
+				BEBB72E215ED448C0007122B /* tracks.png */,
+				BEBB72E315ED448C0007122B /* tracks@2x.png */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -411,6 +433,17 @@
 				BEBB72BE15EC13C20007122B /* UIBarButtonItem+MTLocation.m */,
 			);
 			path = MTLocation;
+			sourceTree = "<group>";
+		};
+		BEBB72E615ED471D0007122B /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				BEBB72E715ED473E0007122B /* LQTracksViewController.h */,
+				BEBB72E815ED473E0007122B /* LQTracksViewController.m */,
+				BEBB72E915ED473E0007122B /* LQTracksViewController.xib */,
+			);
+			name = Tracks;
+			path = Tabs/Tracks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,8 +520,6 @@
 				BEBB728F15EC0AFC0007122B /* map-x@2x.png in Resources */,
 				BEBB729015EC0AFC0007122B /* marker-shadow.png in Resources */,
 				BEBB729115EC0AFC0007122B /* marker-shadow@2x.png in Resources */,
-				BEBB729215EC0AFC0007122B /* raisedTabBarItemTemplate.png in Resources */,
-				BEBB729315EC0AFC0007122B /* raisedTabBarItemTemplate@2x.png in Resources */,
 				BEBB729415EC0AFC0007122B /* settings.png in Resources */,
 				BEBB729515EC0AFC0007122B /* settings@2x.png in Resources */,
 				BEBB729C15EC0D4F0007122B /* button_disabled.png in Resources */,
@@ -503,6 +534,11 @@
 				BEBB72D215EC2B230007122B /* Icon@2x.png in Resources */,
 				BEBB72D515EC2B420007122B /* Default.png in Resources */,
 				BEBB72D615EC2B420007122B /* Default@2x.png in Resources */,
+				BEBB72E415ED448C0007122B /* tracks.png in Resources */,
+				BEBB72E515ED448C0007122B /* tracks@2x.png in Resources */,
+				BEBB72EB15ED473E0007122B /* LQTracksViewController.xib in Resources */,
+				BE486A9715F7C51E00F76B4B /* newGeotrack.png in Resources */,
+				BE486A9815F7C51E00F76B4B /* newGeotrack@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +572,9 @@
 				BEBB72C615EC13C20007122B /* MTOneTimeLocationManager.m in Sources */,
 				BEBB72C715EC13C20007122B /* MTTouchesMovedGestureRecognizer.m in Sources */,
 				BEBB72C815EC13C20007122B /* UIBarButtonItem+MTLocation.m in Sources */,
+				BEBB72EA15ED473E0007122B /* LQTracksViewController.m in Sources */,
+				BE486AAB15F7CD6C00F76B4B /* LQSTableViewController.m in Sources */,
+				BE486AAC15F7CD6C00F76B4B /* STableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

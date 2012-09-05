@@ -63,7 +63,7 @@
     
     self.delegate = self;
     
-    [self addCenterButtonWithImage:[UIImage imageNamed:@"newGeonote.png"] 
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"newGeotrack.png"] 
                     highlightImage:nil];
 }
 

@@ -9,9 +9,14 @@
 #import "sqlite3.h"
 
 #import "LQAppDelegate.h"
+
+#import "LQTracksViewController.h"
 #import "LQSettingsViewController.h"
 
 @implementation LQAppDelegate {
+    LQTracksViewController *tracksViewController;
+    UINavigationController *tracksNavController;
+    
     LQSettingsViewController *settingsViewController;
     UINavigationController   *settingsNavController;
 }
@@ -30,8 +35,9 @@
     [[LQSession savedSession] log:@"didFinishLaunchingWithOptions: %@", launchOptions];
     [[LQSession savedSession] log:@"monitored regions: %@", [[CLLocationManager new] monitoredRegions]];
     
-    UIViewController *trackPlaceholderController = [UINavigationController new];
-    trackPlaceholderController.title = @"Tracks";
+    tracksViewController = [LQTracksViewController new];
+    tracksNavController = [[UINavigationController alloc] initWithRootViewController:tracksViewController];
+    tracksNavController.navigationBar.tintColor = [UIColor blackColor];
     
     UIViewController *newTrackPlaceholderController = [UINavigationController new];
     newTrackPlaceholderController.title = @"New Geotrack";
@@ -43,12 +49,12 @@
     self.tabBarController = [LQTabBarController new];
     self.tabBarController.delegate = self;
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:
-                                             trackPlaceholderController,
+                                             tracksNavController,
                                              newTrackPlaceholderController,
                                              settingsNavController,
                                              nil];
     
-    [self.tabBarController addCenterButtonTarget:self action:@selector(newGeonoteButtonWasTapped:)];
+    [self.tabBarController addCenterButtonTarget:self action:@selector(newTrackButtonWasTapped)];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
@@ -155,6 +161,11 @@
 }
 
 - (void)removeAnonymousBanners
+{
+    
+}
+
+- (void)newTrackButtonWasTapped
 {
     
 }
