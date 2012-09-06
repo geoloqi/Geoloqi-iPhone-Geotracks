@@ -7,9 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LQSTableViewController.h"
+#import "LOLDatabase.h"
 
-@interface LQTracksViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface LQTracksViewController : LQSTableViewController {
+    NSMutableArray *activeTracks;
+    NSMutableArray *inactiveTracks;
+	LOLDatabase *_itemDB;
+    NSDateFormatter *dateFormatter;
+}
 
-@property (nonatomic) IBOutlet UITableView *tableView;
+- (void)prependActiveTrackFromDictionary:(NSDictionary *)track;
+- (void)prependInactiveTrackFromDictionary:(NSDictionary *)track;
+
+- (void)appendActiveTrackFromDictionary:(NSDictionary *)track;
+- (void)appendInactiveTrackFromDictionary:(NSDictionary *)track;
+
+- (void)reloadDataFromDB;
 
 @end

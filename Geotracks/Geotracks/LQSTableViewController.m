@@ -149,6 +149,7 @@
     
     self.tableView.frame = tvf;
     [self.view addSubview:anonymousBanner];
+    [self.view bringSubviewToFront:anonymousBanner];
 }
 
 - (void)removeAnonymousBanner

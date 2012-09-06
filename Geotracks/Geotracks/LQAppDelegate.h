@@ -26,4 +26,9 @@ static NSString *const LQInactiveTracksListCollectionName = @"LQInactiveTracksLi
 - (void)refreshAllSubTableViews;
 - (void)removeAnonymousBanners;
 
++ (NSString *)cacheDatabasePathForCategory:(NSString *)category;
++ (void)deleteFromTable:(NSString *)collectionName forCategory:(NSString *)category;
+
+- (void)selectSetupAccountView;
+
 @end

@@ -26,6 +26,7 @@
 		BE7A84DE15E6E77200340B5C /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84DA15E6E77200340B5C /* CHANGELOG.md */; };
 		BE7A84DF15E6E77200340B5C /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A84DC15E6E77200340B5C /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BE7A84E015E6E77200340B5C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BE7A84DD15E6E77200340B5C /* README.md */; };
+		BE7FB05E15F921BE008904B9 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7FB05D15F921BE008904B9 /* NSString+URLEncoding.m */; };
 		BEBB724315EC057E0007122B /* LQTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB724215EC057E0007122B /* LQTabBarController.m */; };
 		BEBB725815EC06B10007122B /* LQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB724715EC06B10007122B /* LQLoginViewController.m */; };
 		BEBB725915EC06B10007122B /* LQLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB724815EC06B10007122B /* LQLoginViewController.xib */; };
@@ -82,7 +83,6 @@
 		BEBB72E415ED448C0007122B /* tracks.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E215ED448C0007122B /* tracks.png */; };
 		BEBB72E515ED448C0007122B /* tracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E315ED448C0007122B /* tracks@2x.png */; };
 		BEBB72EA15ED473E0007122B /* LQTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72E815ED473E0007122B /* LQTracksViewController.m */; };
-		BEBB72EB15ED473E0007122B /* LQTracksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E915ED473E0007122B /* LQTracksViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +113,8 @@
 		BE7A84DB15E6E77200340B5C /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		BE7A84DC15E6E77200340B5C /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		BE7A84DD15E6E77200340B5C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		BE7FB05C15F921BE008904B9 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		BE7FB05D15F921BE008904B9 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		BEBB724115EC057E0007122B /* LQTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTabBarController.h; sourceTree = "<group>"; };
 		BEBB724215EC057E0007122B /* LQTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTabBarController.m; sourceTree = "<group>"; };
 		BEBB724615EC06B10007122B /* LQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQLoginViewController.h; sourceTree = "<group>"; };
@@ -194,7 +196,6 @@
 		BEBB72E315ED448C0007122B /* tracks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tracks@2x.png"; sourceTree = "<group>"; };
 		BEBB72E715ED473E0007122B /* LQTracksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTracksViewController.h; sourceTree = "<group>"; };
 		BEBB72E815ED473E0007122B /* LQTracksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTracksViewController.m; sourceTree = "<group>"; };
-		BEBB72E915ED473E0007122B /* LQTracksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTracksViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +284,8 @@
 		BE7A84D815E6E5EF00340B5C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BE7FB05C15F921BE008904B9 /* NSString+URLEncoding.h */,
+				BE7FB05D15F921BE008904B9 /* NSString+URLEncoding.m */,
 				BE486AA715F7CD6C00F76B4B /* LQSTableViewController.h */,
 				BE486AA815F7CD6C00F76B4B /* LQSTableViewController.m */,
 				BE486AA915F7CD6C00F76B4B /* STableViewController.h */,
@@ -440,7 +443,6 @@
 			children = (
 				BEBB72E715ED473E0007122B /* LQTracksViewController.h */,
 				BEBB72E815ED473E0007122B /* LQTracksViewController.m */,
-				BEBB72E915ED473E0007122B /* LQTracksViewController.xib */,
 			);
 			name = Tracks;
 			path = Tabs/Tracks;
@@ -536,7 +538,6 @@
 				BEBB72D615EC2B420007122B /* Default@2x.png in Resources */,
 				BEBB72E415ED448C0007122B /* tracks.png in Resources */,
 				BEBB72E515ED448C0007122B /* tracks@2x.png in Resources */,
-				BEBB72EB15ED473E0007122B /* LQTracksViewController.xib in Resources */,
 				BE486A9715F7C51E00F76B4B /* newGeotrack.png in Resources */,
 				BE486A9815F7C51E00F76B4B /* newGeotrack@2x.png in Resources */,
 			);
@@ -575,6 +576,7 @@
 				BEBB72EA15ED473E0007122B /* LQTracksViewController.m in Sources */,
 				BE486AAB15F7CD6C00F76B4B /* LQSTableViewController.m in Sources */,
 				BE486AAC15F7CD6C00F76B4B /* STableViewController.m in Sources */,
+				BE7FB05E15F921BE008904B9 /* NSString+URLEncoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

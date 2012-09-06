@@ -170,4 +170,12 @@
     
 }
 
+#pragma mark -
+
+- (void)selectSetupAccountView
+{
+    self.tabBarController.selectedViewController = settingsNavController;
+    [settingsViewController anonymousBannerWasTapped];
+}
+
 @end
