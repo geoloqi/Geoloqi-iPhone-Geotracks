@@ -216,8 +216,9 @@
             if ([LQSession savedSession].isAnonymous)
                 footer = @"Logged in anonymously";
             else {
-                NSString *displayName = [[NSUserDefaults standardUserDefaults] objectForKey:LQDisplayNameUserDefaultsKey];
-                footer = [NSString stringWithFormat:@"Currently logged in as '%@'", displayName];
+                NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
+                [d synchronize];
+                footer = [NSString stringWithFormat:@"Currently logged in as '%@'", [d objectForKey:LQDisplayNameUserDefaultsKey]];
             }
             break;
     }

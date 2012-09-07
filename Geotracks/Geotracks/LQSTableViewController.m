@@ -148,8 +148,7 @@
               forControlEvents:UIControlEventTouchUpInside];
     
     self.tableView.frame = tvf;
-    [self.view addSubview:anonymousBanner];
-    [self.view bringSubviewToFront:anonymousBanner];
+    [self.view insertSubview:anonymousBanner aboveSubview:self.tableView];
 }
 
 - (void)removeAnonymousBanner

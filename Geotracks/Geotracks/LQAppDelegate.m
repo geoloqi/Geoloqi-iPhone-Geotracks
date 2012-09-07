@@ -157,12 +157,12 @@
 
 - (void)refreshAllSubTableViews
 {
-    
+    [tracksViewController refresh];
 }
 
 - (void)removeAnonymousBanners
 {
-    
+    [tracksViewController removeAnonymousBanner];
 }
 
 - (void)newTrackButtonWasTapped

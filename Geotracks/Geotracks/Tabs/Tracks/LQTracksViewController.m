@@ -8,14 +8,23 @@
 
 #import "LQTracksViewController.h"
 #import "LQTableHeaderView.h"
-//#import "LQTableFooterView.h"
+#import "LQTableFooterView.h"
 #import "LQSDKUtils.h"
 #import "LQAppDelegate.h"
 #import "NSString+URLEncoding.h"
 
 #define MAX_INACTIVE_TRACKS 10
+#define DB_CATEGORY @"LQTracks"
+
+typedef enum {
+    LQActiveTracksSection,
+    LQInactiveTracksSection
+} LQTracksSection;
 
 @interface LQTracksViewController ()
+
+- (void)prependActiveTrackFromDictionary:(NSDictionary *)track;
+- (void)prependInactiveTrackFromDictionary:(NSDictionary *)track;
 
 - (NSInteger)totalTracks;
 - (NSString *)mostRecentTrackCreatedDateString;
@@ -30,10 +39,9 @@
     if (self) {
         self.title = NSLocalizedString(@"Tracks", @"Tracks");
         self.tabBarItem.image = [UIImage imageNamed:@"tracks"];
-        NSLog(@"Tracks init");
     }
     
-    _itemDB = [[LOLDatabase alloc] initWithPath:[LQAppDelegate cacheDatabasePathForCategory:@"LQTracks"]];
+    _itemDB = [[LOLDatabase alloc] initWithPath:[LQAppDelegate cacheDatabasePathForCategory:DB_CATEGORY]];
 	_itemDB.serializer = ^(id object){
 		return [LQSDKUtils dataWithJSONObject:object error:NULL];
 	};
@@ -51,33 +59,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"tracks view loaded");
-
-    // have to re-init the table view to get grouped style
-    [self.tableView removeFromSuperview];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = DEFAULT_TABLE_VIEW_BACKGROUND_COLOR;
-    
-    // this is ripped from STableViewController#viewDidLoad
-    self.tableView.autoresizingMask =  UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    
-    [self.view addSubview:self.tableView];
-    [self.view sendSubviewToBack:self.tableView];
-    
+        
     // set the custom view for "pull to refresh". See LQTableHeaderView.xib
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LQTableHeaderView" owner:self options:nil];
     LQTableHeaderView *headerView = (LQTableHeaderView *)[nib objectAtIndex:0];
     self.headerView = headerView;
     
     // set the custom view for "load more". See LQTableFooterView.xib
-    /*
     nib = [[NSBundle mainBundle] loadNibNamed:@"LQTableFooterView" owner:self options:nil];
     LQTableFooterView *footerView = (LQTableFooterView *)[nib objectAtIndex:0];
     self.footerView = footerView;
-    */
-    [self setFooterViewVisibility:NO];
     
     // Load the stored notes from the local database
     [self reloadDataFromDB];
@@ -139,6 +131,12 @@
     // might need this if /link/list supports ?after= in the future.
     // NSString *date = [self mostRecentTrackPublishedDateString];
     
+    // reset arrays and tables
+    NSMutableArray *_activeTracks = [NSMutableArray new];
+    NSMutableArray *_inactiveTracks = [NSMutableArray new];
+    [LQAppDelegate deleteFromTable:LQActiveTracksListCollectionName forCategory:DB_CATEGORY];
+    [LQAppDelegate deleteFromTable:LQInactiveTracksListCollectionName forCategory:DB_CATEGORY];
+
     NSURLRequest *request = [[LQSession savedSession] requestWithMethod:@"GET"
                                                                    path:@"/link/list"
                                                                 payload:nil];
@@ -146,30 +144,28 @@
                                  completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error){
                                      
         NSLog(@"Got API Response: %d links", [[responseDictionary objectForKey:@"links"] count]);
-        NSLog(@"%@", responseDictionary);
         
-        for(NSDictionary *link in [[responseDictionary objectForKey:@"links"] objectEnumerator]) {
-            if ([link objectForKey:@"currently_active"] == 0) {
-                if (inactiveTracks.count < MAX_INACTIVE_TRACKS) {
+        for (NSDictionary *link in [[responseDictionary objectForKey:@"links"] objectEnumerator]) {
+            if ((int)[link objectForKey:@"currently_active"] == 1) {
+                [_itemDB accessCollection:LQActiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
+                    [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
+                    [_activeTracks addObject:link];
+                }];
+            } else {
+                if (_inactiveTracks.count < MAX_INACTIVE_TRACKS) {
                     [_itemDB accessCollection:LQInactiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-                        // Store in the database
                         [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
-                        // Also add to the top of the local array
-                        [self appendInactiveTrackFromDictionary:link];
+                        [_inactiveTracks addObject:link];
                     }];
                 }
-            } else {
-                [_itemDB accessCollection:LQActiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-                    // Store in the database
-                    [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
-                    // Also add to the top of the local array
-                    [self appendActiveTrackFromDictionary:link];
-                }];
             }
             
         }
         
-        // Tell the table to reload
+        // switch the arrays in and tell the table to reload
+        // (used local arrays until we're done, so async cell loading won't blow up)
+        activeTracks = _activeTracks;
+        inactiveTracks = _inactiveTracks;
         [self.tableView reloadData];
         [self addOrRemoveOverlay];
         
@@ -180,81 +176,6 @@
     
     return YES;
 }
-
-#pragma mark - load more
-
-/*
-- (void) willBeginLoadingMore
-{
-    LQTableFooterView *fv = (LQTableFooterView *)self.footerView;
-    [fv.activityIndicator startAnimating];
-}
-
-- (void) loadMoreCompleted
-{
-    [super loadMoreCompleted];
-    
-    LQTableFooterView *fv = (LQTableFooterView *)self.footerView;
-    [fv.activityIndicator stopAnimating];
-    
-    if (!self.canLoadMore) {
-        // Do something if there are no more items to load
-        
-        // We can hide the footerView by: [self setFooterViewVisibility:NO];
-        
-        // Just show a textual info that there are no more items to load
-        fv.infoLabel.hidden = NO;
-    }
-}
-
-- (BOOL) loadMore
-{
-    if (![super loadMore])
-        return NO;
-    
-    if([self totalTracks] == 0) {
-        [self loadMoreCompleted];
-        return YES;
-    }
-    
-    NSDictionary *item = [items objectAtIndex:items.count-1];
-    NSLog(@"Oldest entry is: %@", item);
-    NSString *date;
-    if(item && [item objectForKey:@"published"])
-        date = [[item objectForKey:@"published"] urlEncodeUsingEncoding:NSUTF8StringEncoding];
-    else
-        date = @"";
-    
-    // Do your async call here
-    NSURLRequest *request = [[LQSession savedSession] requestWithMethod:@"GET" path:[NSString stringWithFormat:@"/timeline/messages?before=%@", date] payload:nil];
-    [[LQSession savedSession] runAPIRequest:request completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error){
-        NSLog(@"Got API Response: %d items", [[responseDictionary objectForKey:@"items"] count]);
-        NSLog(@"%@", responseDictionary);
-        
-        for(NSDictionary *item in [responseDictionary objectForKey:@"items"]) {
-            [_itemDB accessCollection:LQActivityListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-                // Store in the database
-                [accessor setDictionary:item forKey:[item objectForKey:@"published"]];
-                // Also add to the bottom of the local array
-                [self appendObjectFromDictionary:item];
-            }];
-        }
-        
-        // Tell the table to reload
-        [self.tableView reloadData];
-        
-        if ([[responseDictionary objectForKey:@"paging"] objectForKey:@"next_offset"])
-            self.canLoadMore = YES;
-        else
-            self.canLoadMore = NO; // signal that there won't be any more items to load
-        
-        // Inform STableViewController that we have finished loading more items
-        [self loadMoreCompleted];
-    }];
-    
-    return YES;
-}
- */
 
 #pragma mark -
 
@@ -267,15 +188,6 @@
     [inactiveTracks insertObject:track atIndex:0];
 }
 
-- (void)appendActiveTrackFromDictionary:(NSDictionary *)track
-{
-    [activeTracks insertObject:track atIndex:activeTracks.count];
-}
-- (void)appendInactiveTrackFromDictionary:(NSDictionary *)track
-{
-    [inactiveTracks insertObject:track atIndex:inactiveTracks.count];
-}
-
 - (void)reloadDataFromDB
 {
     activeTracks = [NSMutableArray new];
@@ -286,7 +198,7 @@
     }];
     
     inactiveTracks = [NSMutableArray new];
-    [_itemDB accessCollection:LQActiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
+    [_itemDB accessCollection:LQInactiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
         [accessor enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *object, BOOL *stop) {
             [self prependInactiveTrackFromDictionary:object];
         }];
@@ -296,7 +208,7 @@
 - (void)addOrRemoveOverlay
 {
     if ([self totalTracks] == 0)
-        [self addOverlayWithTitle:@"No Tracks Yet" andText:@"You should create a track and\nshare your location"];
+        [self addOverlayWithTitle:@"No Tracks Yet" andText:@"You should create a track\nand share your location or\npull to refresh your tracks"];
     else
         [self removeOverlay];
 }
@@ -310,7 +222,7 @@
 
 - (NSString *)mostRecentTrackCreatedDateString
 {
-    NSString *mrtpds = @"";
+    NSString *mrtcds = @"";
     NSDictionary *mrt;
     
     if (activeTracks.count > 0)
@@ -319,9 +231,84 @@
         mrt = [inactiveTracks objectAtIndex:0];
     
     if (mrt)
-        mrtpds = [[mrt objectForKey:@"date_created"] urlEncodeUsingEncoding:NSUTF8StringEncoding];
+        mrtcds = [[mrt objectForKey:@"date_created"] urlEncodeUsingEncoding:NSUTF8StringEncoding];
     
-    return mrtpds;
+    return mrtcds;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self totalTracks] == 0 ? 0 : 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    int num;
+    switch (section) {
+        case LQActiveTracksSection:
+            num = activeTracks.count;
+            break;
+        case LQInactiveTracksSection:
+            num = inactiveTracks.count;
+            break;
+    }
+    return num;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *str;
+    switch (section) {
+        case LQActiveTracksSection:
+            str = @"Active Tracks";
+            break;
+        case LQInactiveTracksSection:
+            str = @"Inactive Tracks";
+            break;
+    }
+    return str;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellId = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+    
+    BOOL trackIsActive = YES;
+    NSDictionary *track;
+    switch (indexPath.section) {
+        case LQActiveTracksSection:
+            track = [activeTracks objectAtIndex:indexPath.row];
+            break;
+        case LQInactiveTracksSection:
+            track = [inactiveTracks objectAtIndex:indexPath.row];
+            trackIsActive = NO;
+            break;
+    }
+
+    cell.textLabel.text = [track objectForKey:@"description"];
+    if (trackIsActive) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.textLabel.textColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:214.0/255.0 green:214.0/255.0 blue:214.0/255.0 alpha:1.0];
+    }
+
+    NSDate *created = [NSDate dateWithTimeIntervalSince1970:[[track objectForKey:@"date_created_ts"] doubleValue]];
+    if ([[track objectForKey:@"start_location_name"] isEqualToString:@""]) {
+        cell.detailTextLabel.text = [dateFormatter stringFromDate:created];
+    } else {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ | %@",
+                                     [dateFormatter stringFromDate:created],
+                                     [track objectForKey:@"start_location_name"]];
+    }
+
+    
+    return cell;
 }
 
 @end

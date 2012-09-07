@@ -17,12 +17,6 @@
     NSDateFormatter *dateFormatter;
 }
 
-- (void)prependActiveTrackFromDictionary:(NSDictionary *)track;
-- (void)prependInactiveTrackFromDictionary:(NSDictionary *)track;
-
-- (void)appendActiveTrackFromDictionary:(NSDictionary *)track;
-- (void)appendInactiveTrackFromDictionary:(NSDictionary *)track;
-
 - (void)reloadDataFromDB;
 
 @end
