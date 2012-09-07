@@ -83,6 +83,8 @@
 		BEBB72E415ED448C0007122B /* tracks.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E215ED448C0007122B /* tracks.png */; };
 		BEBB72E515ED448C0007122B /* tracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BEBB72E315ED448C0007122B /* tracks@2x.png */; };
 		BEBB72EA15ED473E0007122B /* LQTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBB72E815ED473E0007122B /* LQTracksViewController.m */; };
+		BEF78BAC15FAB9F700CF41FA /* LQNewTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF78BAA15FAB9F700CF41FA /* LQNewTrackViewController.m */; };
+		BEF78BAD15FAB9F700CF41FA /* LQNewTrackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEF78BAB15FAB9F700CF41FA /* LQNewTrackViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,6 +198,9 @@
 		BEBB72E315ED448C0007122B /* tracks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tracks@2x.png"; sourceTree = "<group>"; };
 		BEBB72E715ED473E0007122B /* LQTracksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTracksViewController.h; sourceTree = "<group>"; };
 		BEBB72E815ED473E0007122B /* LQTracksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTracksViewController.m; sourceTree = "<group>"; };
+		BEF78BA915FAB9F700CF41FA /* LQNewTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LQNewTrackViewController.h; path = Tabs/NewTrack/LQNewTrackViewController.h; sourceTree = "<group>"; };
+		BEF78BAA15FAB9F700CF41FA /* LQNewTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LQNewTrackViewController.m; path = Tabs/NewTrack/LQNewTrackViewController.m; sourceTree = "<group>"; };
+		BEF78BAB15FAB9F700CF41FA /* LQNewTrackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LQNewTrackViewController.xib; path = Tabs/NewTrack/LQNewTrackViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				BEBB72E615ED471D0007122B /* Tracks */,
+				BEF78B9C15FAB88700CF41FA /* New Track */,
 				BEBB724415EC05F40007122B /* Settings */,
 			);
 			name = Tabs;
@@ -448,6 +454,16 @@
 			path = Tabs/Tracks;
 			sourceTree = "<group>";
 		};
+		BEF78B9C15FAB88700CF41FA /* New Track */ = {
+			isa = PBXGroup;
+			children = (
+				BEF78BA915FAB9F700CF41FA /* LQNewTrackViewController.h */,
+				BEF78BAA15FAB9F700CF41FA /* LQNewTrackViewController.m */,
+				BEF78BAB15FAB9F700CF41FA /* LQNewTrackViewController.xib */,
+			);
+			name = "New Track";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -540,6 +556,7 @@
 				BEBB72E515ED448C0007122B /* tracks@2x.png in Resources */,
 				BE486A9715F7C51E00F76B4B /* newGeotrack.png in Resources */,
 				BE486A9815F7C51E00F76B4B /* newGeotrack@2x.png in Resources */,
+				BEF78BAD15FAB9F700CF41FA /* LQNewTrackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +594,7 @@
 				BE486AAB15F7CD6C00F76B4B /* LQSTableViewController.m in Sources */,
 				BE486AAC15F7CD6C00F76B4B /* STableViewController.m in Sources */,
 				BE7FB05E15F921BE008904B9 /* NSString+URLEncoding.m in Sources */,
+				BEF78BAC15FAB9F700CF41FA /* LQNewTrackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

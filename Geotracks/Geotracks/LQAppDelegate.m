@@ -12,6 +12,7 @@
 
 #import "LQTracksViewController.h"
 #import "LQSettingsViewController.h"
+#import "LQNewTrackViewController.h"
 
 @implementation LQAppDelegate {
     LQTracksViewController *tracksViewController;
@@ -19,6 +20,8 @@
     
     LQSettingsViewController *settingsViewController;
     UINavigationController   *settingsNavController;
+    
+    UINavigationController *newTrackNavController;
 }
 
 @synthesize window;
@@ -40,7 +43,7 @@
     tracksNavController.navigationBar.tintColor = [UIColor blackColor];
     
     UIViewController *newTrackPlaceholderController = [UINavigationController new];
-    newTrackPlaceholderController.title = @"New Geotrack";
+    newTrackPlaceholderController.title = @"New Track";
     
     settingsViewController = [LQSettingsViewController new];
     settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
@@ -92,11 +95,12 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    LQSession *session = [LQSession savedSession];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    if (!SHOW_LOG_SETTINGS && [session fileLogging])
-        [session setFileLogging:NO];
-    [settingsViewController.tableView reloadData];
+    [LQSession savedSession:^(LQSession *session) {
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        if (!SHOW_LOG_SETTINGS && [session fileLogging])
+            [session setFileLogging:NO];
+        [settingsViewController.tableView reloadData];
+    }];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -167,7 +171,13 @@
 
 - (void)newTrackButtonWasTapped
 {
-    
+    if (!newTrackNavController) {
+        LQNewTrackViewController *newTrackViewController = [LQNewTrackViewController new];
+        newTrackNavController = [[UINavigationController alloc] initWithRootViewController:newTrackViewController];
+        newTrackNavController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        newTrackNavController.navigationBar.tintColor = [UIColor blackColor];
+    }
+    [self.tabBarController presentViewController:newTrackNavController animated:YES completion:nil];
 }
 
 #pragma mark -
