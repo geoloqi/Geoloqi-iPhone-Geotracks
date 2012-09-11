@@ -518,7 +518,12 @@
 
 - (IBAction)locationTrackingWasSwitched:(UISwitch *)sender
 {
-    [[LQTracker sharedTracker] setProfile:(sender.on ? LQTrackerProfileAdaptive : LQTrackerProfileOff)];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:sender.on forKey:LQLocationEnabledUserDefaultsKey];
+    [defaults synchronize];
+    if (sender.on) {
+
+    }
 }
 
 - (IBAction)fileLoggingWasSwitched:(UISwitch *)sender

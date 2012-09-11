@@ -12,6 +12,8 @@
 #import "LQSDKUtils.h"
 #import "LQAppDelegate.h"
 #import "NSString+URLEncoding.h"
+#import "LQTrackViewController.h"
+#import "MBProgressHUD.h"
 
 #define MAX_INACTIVE_TRACKS 10
 #define DB_CATEGORY @"LQTracks"
@@ -31,7 +33,13 @@ typedef enum {
 
 @end
 
-@implementation LQTracksViewController
+@implementation LQTracksViewController {
+    NSMutableArray *activeTracks;
+    NSMutableArray *inactiveTracks;
+	LOLDatabase *_itemDB;
+    NSDateFormatter *dateFormatter;
+    NSIndexPath *currentlySelectedIndexPath;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -141,37 +149,40 @@ typedef enum {
                                                                    path:@"/link/list"
                                                                 payload:nil];
     [[LQSession savedSession] runAPIRequest:request
-                                 completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error){
-                                     
-        NSLog(@"Got API Response: %d links", [[responseDictionary objectForKey:@"links"] count]);
-        
-        for (NSDictionary *link in [[responseDictionary objectForKey:@"links"] objectEnumerator]) {
-            if ((int)[link objectForKey:@"currently_active"] == 1) {
-                [_itemDB accessCollection:LQActiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-                    [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
-                    [_activeTracks addObject:link];
-                }];
-            } else {
-                if (_inactiveTracks.count < MAX_INACTIVE_TRACKS) {
-                    [_itemDB accessCollection:LQInactiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
+                                 completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error) {
+
+        if (error) {
+                                         
+        } else {
+            NSLog(@"Got API Response: %d links", [[responseDictionary objectForKey:@"links"] count]);
+            
+            for (NSDictionary *link in [[responseDictionary objectForKey:@"links"] objectEnumerator]) {
+                if ([[link objectForKey:@"currently_active"] intValue]) {
+                    [_itemDB accessCollection:LQActiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
                         [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
-                        [_inactiveTracks addObject:link];
+                        [_activeTracks addObject:link];
                     }];
+                } else {
+                    if (_inactiveTracks.count < MAX_INACTIVE_TRACKS) {
+                        [_itemDB accessCollection:LQInactiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
+                            [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
+                            [_inactiveTracks addObject:link];
+                        }];
+                    }
                 }
             }
             
+            // switch the arrays in and tell the table to reload
+            // (used local arrays until we're done, so async cell loading won't blow up)
+            activeTracks = _activeTracks;
+            inactiveTracks = _inactiveTracks;
+            [self.tableView reloadData];
+            [self addOrRemoveOverlay];
+            
+            // Call this to indicate that we have finished "refreshing".
+            // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
+            [self refreshCompleted];
         }
-        
-        // switch the arrays in and tell the table to reload
-        // (used local arrays until we're done, so async cell loading won't blow up)
-        activeTracks = _activeTracks;
-        inactiveTracks = _inactiveTracks;
-        [self.tableView reloadData];
-        [self addOrRemoveOverlay];
-        
-        // Call this to indicate that we have finished "refreshing".
-        // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
-        [self refreshCompleted];
     }];
     
     return YES;
@@ -278,26 +289,23 @@ typedef enum {
     if (!cell)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
     
-    BOOL trackIsActive = YES;
     NSDictionary *track;
     switch (indexPath.section) {
         case LQActiveTracksSection:
             track = [activeTracks objectAtIndex:indexPath.row];
+            cell.textLabel.textColor = [UIColor darkTextColor];
+            cell.detailTextLabel.textColor = [UIColor darkTextColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             break;
         case LQInactiveTracksSection:
             track = [inactiveTracks objectAtIndex:indexPath.row];
-            trackIsActive = NO;
+            cell.textLabel.textColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
+            cell.detailTextLabel.textColor = [UIColor colorWithRed:214.0/255.0 green:214.0/255.0 blue:214.0/255.0 alpha:1.0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
     }
 
     cell.textLabel.text = [track objectForKey:@"description"];
-    if (trackIsActive) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        cell.textLabel.textColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:214.0/255.0 green:214.0/255.0 blue:214.0/255.0 alpha:1.0];
-    }
-
     NSDate *created = [NSDate dateWithTimeIntervalSince1970:[[track objectForKey:@"date_created_ts"] doubleValue]];
     if ([[track objectForKey:@"start_location_name"] isEqualToString:@""]) {
         cell.detailTextLabel.text = [dateFormatter stringFromDate:created];
@@ -306,9 +314,74 @@ typedef enum {
                                      [dateFormatter stringFromDate:created],
                                      [track objectForKey:@"start_location_name"]];
     }
-
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        currentlySelectedIndexPath = indexPath;
+        UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                          destructiveButtonTitle:@"Deactivate"
+                                               otherButtonTitles:@"Copy Link", @"View on Map", nil];
+        [as showFromTabBar:self.tabBarController.tabBar];
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSDictionary *track = [activeTracks objectAtIndex:currentlySelectedIndexPath.row];
+    
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[track objectForKey:@"token"], @"token", nil];
+        LQSession *session = [LQSession savedSession];
+        NSURLRequest *request = [session requestWithMethod:@"POST" path:@"/link/deactivate" payload:params];
+        [[MBProgressHUD showHUDAddedTo:self.view animated:NO] setLabelText:@"Deactivating"];
+        [session runAPIRequest:request completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if (error) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:[[error userInfo] objectForKey:NSLocalizedDescriptionKey]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            } else {
+                [self refresh];
+            }
+        }];
+    } else {
+        NSURL *url = [NSURL URLWithString:[track objectForKey:@"shortlink"]];
+        switch (buttonIndex - actionSheet.firstOtherButtonIndex) {
+            case 0: // copy link
+                if (currentlySelectedIndexPath) [UIPasteboard generalPasteboard].URL = url;
+                break;
+                
+            case 1: // view on map
+            {
+                LQTrackViewController *trackViewController = [LQTrackViewController new];
+                trackViewController.title = [track objectForKey:@"description"];
+                trackViewController.url = url;
+                [self.navigationController pushViewController:trackViewController animated:YES];
+                break;
+            }
+        }
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (currentlySelectedIndexPath) {
+        [self.tableView deselectRowAtIndexPath:currentlySelectedIndexPath animated:NO];
+        currentlySelectedIndexPath = nil;
+    }
 }
 
 @end

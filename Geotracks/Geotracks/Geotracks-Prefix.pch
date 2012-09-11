@@ -15,8 +15,9 @@
 #import "LQConfig.h"
 #endif
 
-#define NSLog(args...) [[LQSession savedSession] log:args]
+//#define NSLog(args...) [[LQSession savedSession] log:args]
 #define SHOW_LOG_SETTINGS [[NSUserDefaults standardUserDefaults] boolForKey:@"com.geoloqi.geotracks.showLogSettings"]
 #define DEFAULT_TABLE_VIEW_BACKGROUND_COLOR [UIColor colorWithWhite:249.0/255.0 alpha:1.0]
 
-static NSString *const LQDisplayNameUserDefaultsKey = @"com.geoloqi.geotracks.LQDisplayName";
+static NSString *const LQDisplayNameUserDefaultsKey =     @"com.geoloqi.geotracks.LQDisplayName";
+static NSString *const LQLocationEnabledUserDefaultsKey = @"com.geoloqi.geotracks.LQLocationEnabled";

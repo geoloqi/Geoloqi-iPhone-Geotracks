@@ -11,6 +11,8 @@
 		BE486A9815F7C51E00F76B4B /* newGeotrack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE486A9615F7C51E00F76B4B /* newGeotrack@2x.png */; };
 		BE486AAB15F7CD6C00F76B4B /* LQSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE486AA815F7CD6C00F76B4B /* LQSTableViewController.m */; };
 		BE486AAC15F7CD6C00F76B4B /* STableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE486AAA15F7CD6C00F76B4B /* STableViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BE51929215FEC00100B58484 /* LQTrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE51929015FEC00100B58484 /* LQTrackViewController.m */; };
+		BE51929315FEC00100B58484 /* LQTrackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE51929115FEC00100B58484 /* LQTrackViewController.xib */; };
 		BE7A849F15E6D3F600340B5C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A849E15E6D3F600340B5C /* UIKit.framework */; };
 		BE7A84A115E6D3F600340B5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84A015E6D3F600340B5C /* Foundation.framework */; };
 		BE7A84A315E6D3F600340B5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A84A215E6D3F600340B5C /* CoreGraphics.framework */; };
@@ -94,6 +96,9 @@
 		BE486AA815F7CD6C00F76B4B /* LQSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSTableViewController.m; sourceTree = "<group>"; };
 		BE486AA915F7CD6C00F76B4B /* STableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STableViewController.h; sourceTree = "<group>"; };
 		BE486AAA15F7CD6C00F76B4B /* STableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STableViewController.m; sourceTree = "<group>"; };
+		BE51928F15FEC00100B58484 /* LQTrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTrackViewController.h; sourceTree = "<group>"; };
+		BE51929015FEC00100B58484 /* LQTrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTrackViewController.m; sourceTree = "<group>"; };
+		BE51929115FEC00100B58484 /* LQTrackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTrackViewController.xib; sourceTree = "<group>"; };
 		BE7A849A15E6D3F600340B5C /* Geotracks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geotracks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7A849E15E6D3F600340B5C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BE7A84A015E6D3F600340B5C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -449,6 +454,9 @@
 			children = (
 				BEBB72E715ED473E0007122B /* LQTracksViewController.h */,
 				BEBB72E815ED473E0007122B /* LQTracksViewController.m */,
+				BE51928F15FEC00100B58484 /* LQTrackViewController.h */,
+				BE51929015FEC00100B58484 /* LQTrackViewController.m */,
+				BE51929115FEC00100B58484 /* LQTrackViewController.xib */,
 			);
 			name = Tracks;
 			path = Tabs/Tracks;
@@ -557,6 +565,7 @@
 				BE486A9715F7C51E00F76B4B /* newGeotrack.png in Resources */,
 				BE486A9815F7C51E00F76B4B /* newGeotrack@2x.png in Resources */,
 				BEF78BAD15FAB9F700CF41FA /* LQNewTrackViewController.xib in Resources */,
+				BE51929315FEC00100B58484 /* LQTrackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +604,7 @@
 				BE486AAC15F7CD6C00F76B4B /* STableViewController.m in Sources */,
 				BE7FB05E15F921BE008904B9 /* NSString+URLEncoding.m in Sources */,
 				BEF78BAC15FAB9F700CF41FA /* LQNewTrackViewController.m in Sources */,
+				BE51929215FEC00100B58484 /* LQTrackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,7 +672,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/GeoloqiSDK\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/GeoloqiSDK\"";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lGeoloqi-Release",

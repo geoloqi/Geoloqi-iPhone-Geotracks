@@ -10,12 +10,7 @@
 #import "LQSTableViewController.h"
 #import "LOLDatabase.h"
 
-@interface LQTracksViewController : LQSTableViewController {
-    NSMutableArray *activeTracks;
-    NSMutableArray *inactiveTracks;
-	LOLDatabase *_itemDB;
-    NSDateFormatter *dateFormatter;
-}
+@interface LQTracksViewController : LQSTableViewController <UIActionSheetDelegate>
 
 - (void)reloadDataFromDB;
 

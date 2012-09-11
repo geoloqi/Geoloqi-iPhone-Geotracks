@@ -7,8 +7,10 @@
 //
 
 #import "LQNewTrackViewController.h"
+#import "LQButtonTableViewCell.h"
+#import "MBProgressHUD.h"
 
-#define TOTAL_CHARACTER_COUNT 250
+#define TOTAL_CHARACTER_COUNT 119 // 140 (tweet size) - 20 (shortened link) - 1 (space between)
 
 typedef enum {
     LQNewTrackDescriptionCell,
@@ -26,6 +28,7 @@ typedef enum {
     UIBarButtonItem *cancelButton;
     UITextView *trackDesciptionView;
     UILabel *characterCount;
+    LQButtonTableViewCell *buttonTableViewCell;
 }
 
 @synthesize tableView = _tableView;
@@ -72,13 +75,49 @@ typedef enum {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (BOOL)formIsComplete
 {
-    return 1;
+    int textLength = trackDesciptionView.text.length;
+    return textLength > 0 && textLength <= TOTAL_CHARACTER_COUNT;
 }
 
+- (IBAction)createNewTrackButtonWasTapped:(id)sender
+{
+    [trackDesciptionView resignFirstResponder];
+    [[MBProgressHUD showHUDAddedTo:self.view animated:YES] setLabelText:@"Creating"];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:trackDesciptionView.text, @"description", nil];
+    
+    LQSession *session = [LQSession savedSession];
+    NSURLRequest *request = [session requestWithMethod:@"POST"
+                                                  path:@"/link/create"
+                                               payload:params];
+    
+    [session runAPIRequest:request completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        if (error) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error description]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else if ([responseDictionary objectForKey:@"token"]) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            if (self.createComplete) self.createComplete();
+        }
+    }];
+}
+
+#pragma mark - UITableViewDataSource
+
+// using 1-cell sections... see below...
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+// we're going for sections to separate out the grouped table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;
@@ -95,7 +134,7 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case LQNewTrackDescriptionCell: {
             static NSString *descriptionCellId = @"description";
             cell = [tableView dequeueReusableCellWithIdentifier:descriptionCellId];
@@ -124,7 +163,15 @@ typedef enum {
         }
         
         case LQNewTrackSubmitCell:
+        {
+            buttonTableViewCell = [LQButtonTableViewCell buttonTableViewCellWithTitle:@"Create"
+                                                                                owner:self
+                                                                              enabled:[self formIsComplete]
+                                                                               target:self
+                                                                             selector:@selector(createNewTrackButtonWasTapped:)];
+            cell = buttonTableViewCell;
             break;
+        }
             
         case LQNewTrackInstructionCell:
             break;
@@ -132,6 +179,25 @@ typedef enum {
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    NSInteger chars = TOTAL_CHARACTER_COUNT - trackDesciptionView.text.length;
+    characterCount.textColor = (chars < 0) ? [UIColor redColor] : [UIColor darkTextColor];
+    characterCount.text = [NSString stringWithFormat:@"%d", chars];
+    [buttonTableViewCell setButtonState:[self formIsComplete]];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    BOOL should = NO;
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    } else {
+        should = YES;
+    }
+    return should;
+}
 
 @end

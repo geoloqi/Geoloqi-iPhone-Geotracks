@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^CompletionCallback)(void);
+
 @interface LQNewTrackViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
 
 @property IBOutlet UITableView *tableView;
+@property (nonatomic, strong) CompletionCallback createComplete;
 
 @end

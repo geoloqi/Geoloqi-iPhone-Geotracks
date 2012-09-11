@@ -176,6 +176,10 @@
         newTrackNavController = [[UINavigationController alloc] initWithRootViewController:newTrackViewController];
         newTrackNavController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         newTrackNavController.navigationBar.tintColor = [UIColor blackColor];
+        newTrackViewController.createComplete = ^(void) {
+            self.tabBarController.selectedViewController = tracksNavController;
+            [tracksViewController refresh];
+        };
     }
     [self.tabBarController presentViewController:newTrackNavController animated:YES completion:nil];
 }
