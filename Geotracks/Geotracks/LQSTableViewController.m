@@ -139,7 +139,7 @@
     anonymousBanner = [UIButton buttonWithType:UIButtonTypeCustom];
     anonymousBanner.frame = bannerFrame;
     anonymousBanner.backgroundColor = ANONYMOUS_BANNER_BACKGROUND_COLOR;
-    [anonymousBanner setTitle:@"You are using Geonotes anonymously" forState:UIControlStateNormal];
+    [anonymousBanner setTitle:@"You are using Geotracks anonymously" forState:UIControlStateNormal];
     [anonymousBanner setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     anonymousBanner.titleLabel.font = [UIFont systemFontOfSize:12];
     [anonymousBanner setUserInteractionEnabled:YES];

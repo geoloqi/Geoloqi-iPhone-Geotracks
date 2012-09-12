@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LQSTableViewController.h"
-#import "LOLDatabase.h"
 
 @interface LQTracksViewController : LQSTableViewController <UIActionSheetDelegate>
-
-- (void)reloadDataFromDB;
 
 @end

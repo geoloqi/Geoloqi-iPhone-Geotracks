@@ -9,6 +9,7 @@
 #import "LQSettingsViewController.h"
 #import "LQPrivacyPolicyViewController.h"
 #import "LQCreditsViewController.h"
+#import "LQTrackManager.h"
 
 @implementation LQSettingsViewController {
     NSArray *sectionHeaders;
@@ -254,9 +255,9 @@
     
     UISwitch *locationSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
     cell.accessoryView = locationSwitch;
-    LQTracker *tracker = [LQTracker sharedTracker];
-    LQTrackerProfile profile = [tracker profile];
-    [locationSwitch setOn:(profile != LQTrackerProfileOff) animated:NO];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
+    [locationSwitch setOn:[defaults boolForKey:LQLocationEnabledUserDefaultsKey] animated:NO];
     [locationSwitch addTarget:self action:@selector(locationTrackingWasSwitched:) forControlEvents:UIControlEventValueChanged];
     return cell;
 }
@@ -521,9 +522,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:sender.on forKey:LQLocationEnabledUserDefaultsKey];
     [defaults synchronize];
-    if (sender.on) {
-
-    }
+    [[LQTrackManager sharedManager] setTrackerProfile];
 }
 
 - (IBAction)fileLoggingWasSwitched:(UISwitch *)sender

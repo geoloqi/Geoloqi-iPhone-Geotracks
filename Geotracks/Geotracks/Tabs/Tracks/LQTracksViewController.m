@@ -9,11 +9,9 @@
 #import "LQTracksViewController.h"
 #import "LQTableHeaderView.h"
 #import "LQTableFooterView.h"
-#import "LQSDKUtils.h"
-#import "LQAppDelegate.h"
-#import "NSString+URLEncoding.h"
 #import "LQTrackViewController.h"
 #import "MBProgressHUD.h"
+#import "LQTrackManager.h"
 
 #define MAX_INACTIVE_TRACKS 10
 #define DB_CATEGORY @"LQTracks"
@@ -25,18 +23,12 @@ typedef enum {
 
 @interface LQTracksViewController ()
 
-- (void)prependActiveTrackFromDictionary:(NSDictionary *)track;
-- (void)prependInactiveTrackFromDictionary:(NSDictionary *)track;
-
-- (NSInteger)totalTracks;
-- (NSString *)mostRecentTrackCreatedDateString;
+- (void)verifyTrackerProfileSetting;
 
 @end
 
 @implementation LQTracksViewController {
-    NSMutableArray *activeTracks;
-    NSMutableArray *inactiveTracks;
-	LOLDatabase *_itemDB;
+    LQTrackManager *trackManager;
     NSDateFormatter *dateFormatter;
     NSIndexPath *currentlySelectedIndexPath;
 }
@@ -49,14 +41,8 @@ typedef enum {
         self.tabBarItem.image = [UIImage imageNamed:@"tracks"];
     }
     
-    _itemDB = [[LOLDatabase alloc] initWithPath:[LQAppDelegate cacheDatabasePathForCategory:DB_CATEGORY]];
-	_itemDB.serializer = ^(id object){
-		return [LQSDKUtils dataWithJSONObject:object error:NULL];
-	};
-	_itemDB.deserializer = ^(NSData *data) {
-		return [LQSDKUtils objectFromJSONData:data error:NULL];
-	};
-    
+    trackManager = [LQTrackManager sharedManager];
+
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -79,8 +65,9 @@ typedef enum {
     LQTableFooterView *footerView = (LQTableFooterView *)[nib objectAtIndex:0];
     self.footerView = footerView;
     
-    // Load the stored notes from the local database
-    [self reloadDataFromDB];
+    // Load the stored tracks from the local database
+    [trackManager reloadTracksFromDB];
+    
 }
 
 - (void)viewDidUnload
@@ -102,7 +89,7 @@ typedef enum {
 
 #pragma mark - header view
 
-- (void) pinHeaderView
+- (void)pinHeaderView
 {
     [super pinHeaderView];
     
@@ -112,7 +99,7 @@ typedef enum {
     hv.title.text = @"Loading...";
 }
 
-- (void) unpinHeaderView
+- (void)unpinHeaderView
 {
     [super unpinHeaderView];
     
@@ -120,7 +107,7 @@ typedef enum {
     [[(LQTableHeaderView *)self.headerView activityIndicator] stopAnimating];
 }
 
-- (void) headerViewDidScroll:(BOOL)willRefreshOnRelease scrollView:(UIScrollView *)scrollView
+- (void)headerViewDidScroll:(BOOL)willRefreshOnRelease scrollView:(UIScrollView *)scrollView
 {
     LQTableHeaderView *hv = (LQTableHeaderView *)self.headerView;
     if (willRefreshOnRelease)
@@ -136,49 +123,20 @@ typedef enum {
     if (![super refresh])
         return NO;
     
-    // might need this if /link/list supports ?after= in the future.
-    // NSString *date = [self mostRecentTrackPublishedDateString];
-    
-    // reset arrays and tables
-    NSMutableArray *_activeTracks = [NSMutableArray new];
-    NSMutableArray *_inactiveTracks = [NSMutableArray new];
-    [LQAppDelegate deleteFromTable:LQActiveTracksListCollectionName forCategory:DB_CATEGORY];
-    [LQAppDelegate deleteFromTable:LQInactiveTracksListCollectionName forCategory:DB_CATEGORY];
-
-    NSURLRequest *request = [[LQSession savedSession] requestWithMethod:@"GET"
-                                                                   path:@"/link/list"
-                                                                payload:nil];
-    [[LQSession savedSession] runAPIRequest:request
-                                 completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error) {
-
+    [trackManager reloadTracksFromAPI:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error) {
         if (error) {
-                                         
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[[error userInfo] objectForKey:NSLocalizedDescriptionKey ]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
         } else {
-            NSLog(@"Got API Response: %d links", [[responseDictionary objectForKey:@"links"] count]);
-            
-            for (NSDictionary *link in [[responseDictionary objectForKey:@"links"] objectEnumerator]) {
-                if ([[link objectForKey:@"currently_active"] intValue]) {
-                    [_itemDB accessCollection:LQActiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-                        [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
-                        [_activeTracks addObject:link];
-                    }];
-                } else {
-                    if (_inactiveTracks.count < MAX_INACTIVE_TRACKS) {
-                        [_itemDB accessCollection:LQInactiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-                            [accessor setDictionary:link forKey:[link objectForKey:@"date_created"]];
-                            [_inactiveTracks addObject:link];
-                        }];
-                    }
-                }
-            }
-            
-            // switch the arrays in and tell the table to reload
-            // (used local arrays until we're done, so async cell loading won't blow up)
-            activeTracks = _activeTracks;
-            inactiveTracks = _inactiveTracks;
+            // tell the table to reload
             [self.tableView reloadData];
             [self addOrRemoveOverlay];
-            
+            [self verifyTrackerProfileSetting];
+
             // Call this to indicate that we have finished "refreshing".
             // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
             [self refreshCompleted];
@@ -190,68 +148,34 @@ typedef enum {
 
 #pragma mark -
 
-- (void)prependActiveTrackFromDictionary:(NSDictionary *)track
-{
-    [activeTracks insertObject:track atIndex:0];
-}
-- (void)prependInactiveTrackFromDictionary:(NSDictionary *)track
-{
-    [inactiveTracks insertObject:track atIndex:0];
-}
-
-- (void)reloadDataFromDB
-{
-    activeTracks = [NSMutableArray new];
-    [_itemDB accessCollection:LQActiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-        [accessor enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *object, BOOL *stop) {
-            [self prependActiveTrackFromDictionary:object];
-        }];
-    }];
-    
-    inactiveTracks = [NSMutableArray new];
-    [_itemDB accessCollection:LQInactiveTracksListCollectionName withBlock:^(id<LOLDatabaseAccessor> accessor) {
-        [accessor enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSDictionary *object, BOOL *stop) {
-            [self prependInactiveTrackFromDictionary:object];
-        }];
-    }];
-}
-
 - (void)addOrRemoveOverlay
 {
-    if ([self totalTracks] == 0)
+    if ([trackManager totalTracksCount] == 0)
         [self addOverlayWithTitle:@"No Tracks Yet" andText:@"You should create a track\nand share your location or\npull to refresh your tracks"];
     else
         [self removeOverlay];
 }
 
-#pragma mark -
-
-- (NSInteger)totalTracks
+- (void)verifyTrackerProfileSetting
 {
-    return activeTracks.count + inactiveTracks.count;
-}
-
-- (NSString *)mostRecentTrackCreatedDateString
-{
-    NSString *mrtcds = @"";
-    NSDictionary *mrt;
-    
-    if (activeTracks.count > 0)
-        mrt = [activeTracks objectAtIndex:0];
-    else if (inactiveTracks > 0)
-        mrt = [inactiveTracks objectAtIndex:0];
-    
-    if (mrt)
-        mrtcds = [[mrt objectForKey:@"date_created"] urlEncodeUsingEncoding:NSUTF8StringEncoding];
-    
-    return mrtcds;
+    if ([trackManager activeTracksCount] > 0 &&
+        [[LQTracker sharedTracker] profile] == LQTrackerProfileOff &&
+        ![[NSUserDefaults standardUserDefaults] boolForKey:LQLocationEnabledUserDefaultsKey]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Disabled"
+                                                        message:@"You have active tracks, but location updating is disabled on the settings tab. Your track location will not be updated until this is turned on."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self totalTracks] == 0 ? 0 : 2;
+    return [trackManager totalTracksCount] == 0 ? 0 : 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -259,10 +183,10 @@ typedef enum {
     int num;
     switch (section) {
         case LQActiveTracksSection:
-            num = activeTracks.count;
+            num = trackManager.activeTracksCount;
             break;
         case LQInactiveTracksSection:
-            num = inactiveTracks.count;
+            num = trackManager.inactiveTracksCount;
             break;
     }
     return num;
@@ -292,13 +216,13 @@ typedef enum {
     NSDictionary *track;
     switch (indexPath.section) {
         case LQActiveTracksSection:
-            track = [activeTracks objectAtIndex:indexPath.row];
+            track = [trackManager.activeTracks objectAtIndex:indexPath.row];
             cell.textLabel.textColor = [UIColor darkTextColor];
             cell.detailTextLabel.textColor = [UIColor darkTextColor];
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             break;
         case LQInactiveTracksSection:
-            track = [inactiveTracks objectAtIndex:indexPath.row];
+            track = [trackManager.inactiveTracks objectAtIndex:indexPath.row];
             cell.textLabel.textColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0];
             cell.detailTextLabel.textColor = [UIColor colorWithRed:214.0/255.0 green:214.0/255.0 blue:214.0/255.0 alpha:1.0];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -337,7 +261,7 @@ typedef enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSDictionary *track = [activeTracks objectAtIndex:currentlySelectedIndexPath.row];
+    NSDictionary *track = [trackManager.activeTracks objectAtIndex:currentlySelectedIndexPath.row];
     
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[track objectForKey:@"token"], @"token", nil];
