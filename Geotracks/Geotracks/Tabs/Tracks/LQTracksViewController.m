@@ -282,14 +282,19 @@ typedef enum {
             }
         }];
     } else {
-        NSURL *url = [NSURL URLWithString:[track objectForKey:@"shortlink"]];
+
         switch (buttonIndex - actionSheet.firstOtherButtonIndex) {
             case 0: // copy link
+            {
+                NSURL *url = [NSURL URLWithString:[track objectForKey:@"shortlink"]];
                 if (currentlySelectedIndexPath) [UIPasteboard generalPasteboard].URL = url;
                 break;
+            }
                 
             case 1: // view on map
             {
+                NSString *urlWithFormatParam = [[track objectForKey:@"link"] stringByAppendingString:@"?format=geotracks"];
+                NSURL *url = [NSURL URLWithString:urlWithFormatParam];
                 LQTrackViewController *trackViewController = [LQTrackViewController new];
                 trackViewController.title = [track objectForKey:@"description"];
                 trackViewController.url = url;
