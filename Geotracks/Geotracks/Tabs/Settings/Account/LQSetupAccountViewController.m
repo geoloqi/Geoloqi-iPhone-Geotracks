@@ -176,7 +176,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:cellId];
             if (!cell)
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-            cell.textLabel.text = NSLocalizedString(@"Tap here to login with an existing account", nil);
+            cell.textLabel.text = NSLocalizedString(@"Tap here to log in with an existing account", nil);
             cell.textLabel.textAlignment = UITextAlignmentCenter;
             cell.textLabel.font = [UIFont systemFontOfSize:12];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;

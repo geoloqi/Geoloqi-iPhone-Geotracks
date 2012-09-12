@@ -143,7 +143,7 @@
 
 - (NSString *)tableView:(UITableView *)inTableView titleForHeaderInSection:(NSInteger)section;
 {
-	return (section == 0) ? NSLocalizedString(@"Login to your Geoloqi account", nil) : nil;
+	return (section == 0) ? NSLocalizedString(@"Log in to your Geoloqi account", nil) : nil;
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section;
@@ -177,7 +177,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else if (indexPath.section == 1) {
-        buttonTableViewCell = [LQButtonTableViewCell buttonTableViewCellWithTitle:@"Login"
+        buttonTableViewCell = [LQButtonTableViewCell buttonTableViewCellWithTitle:@"Log in"
                                                                             owner:self
                                                                           enabled:[self isComplete]
                                                                            target:self
@@ -188,7 +188,7 @@
         cell = [_tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        cell.textLabel.text = NSLocalizedString(@"Tap here to setup a new account", nil);
+        cell.textLabel.text = NSLocalizedString(@"Tap here to set up a new account", nil);
         cell.textLabel.textAlignment = UITextAlignmentCenter;
         cell.textLabel.font = [UIFont systemFontOfSize:12];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
