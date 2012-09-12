@@ -31,6 +31,8 @@ typedef enum {
     LQButtonTableViewCell *buttonTableViewCell;
 }
 
+static NSString *const kLQDefaultTrackDescription = @"Heading out! Track me on Geoloqi!";
+
 @synthesize tableView = _tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -72,7 +74,9 @@ typedef enum {
 
 - (IBAction)cancelButtonWasTapped:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^() {
+        trackDesciptionView.text = kLQDefaultTrackDescription;
+    }];
 }
 
 - (BOOL)formIsComplete
@@ -103,8 +107,11 @@ typedef enum {
                                                   otherButtonTitles:nil];
             [alert show];
         } else if ([responseDictionary objectForKey:@"token"]) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-            if (self.createComplete) self.createComplete();
+            [self dismissViewControllerAnimated:YES completion:^() {
+                trackDesciptionView.text = kLQDefaultTrackDescription;
+                if (self.createComplete) self.createComplete();
+            }];
+
         }
     }];
 }
@@ -146,6 +153,7 @@ typedef enum {
             trackDesciptionView.returnKeyType = UIReturnKeyDone;
             [trackDesciptionView setDelegate:self];
             cell.backgroundColor = [UIColor whiteColor];
+            trackDesciptionView.text = kLQDefaultTrackDescription;
             [cell.contentView addSubview:trackDesciptionView];
             
             CGRect characterCountRect = CGRectMake(270, 160, 20, 18);

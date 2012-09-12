@@ -156,6 +156,13 @@
         NSLog(@"Re-initialized session!");
     }
     
+    // this is the case only if the default key has never been assigned a value
+    // have to use #objectForKey because #boolForKey will return NO for nil
+    if ([defaults objectForKey:LQLocationEnabledUserDefaultsKey] == nil) {
+        [defaults setBool:YES forKey:LQLocationEnabledUserDefaultsKey];
+        [defaults synchronize];
+    }
+    
     return didSomething;
 }
 
