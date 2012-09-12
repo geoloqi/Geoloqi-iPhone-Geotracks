@@ -52,7 +52,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    NSInteger rows = 3;
+    if (section == 1) rows = 2;
+    return rows;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -99,14 +101,10 @@
         case 1:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"Sounds";
-                    cell.detailTextLabel.text = @"ThanksSoundDesign.com";
-                    break;
-                case 1:
                     cell.textLabel.text = @"Icons";
                     cell.detailTextLabel.text = @"Glyphish.com";
                     break;
-                case 2:
+                case 1:
                     cell.textLabel.text = @"Support";
                     cell.detailTextLabel.text = @"community.geoloqi.com";
                     break;
