@@ -286,8 +286,7 @@ typedef enum {
         switch (buttonIndex - actionSheet.firstOtherButtonIndex) {
             case 0: // copy link
             {
-                NSURL *url = [NSURL URLWithString:[track objectForKey:@"shortlink"]];
-                if (currentlySelectedIndexPath) [UIPasteboard generalPasteboard].URL = url;
+                [UIPasteboard generalPasteboard].string = [track objectForKey:@"shortlink"];
                 break;
             }
                 
