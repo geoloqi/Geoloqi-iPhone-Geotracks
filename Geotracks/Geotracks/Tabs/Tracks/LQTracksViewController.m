@@ -24,6 +24,7 @@ typedef enum {
 @interface LQTracksViewController ()
 
 - (void)verifyTrackerProfileSetting;
+- (void)showInactiveTracksDidChange:(NSNotification *)notification;
 
 @end
 
@@ -46,6 +47,11 @@ typedef enum {
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showInactiveTracksDidChange:)
+                                                 name:LQShowInactiveTracksDidChangeNotification
+                                               object:nil];
     
     return self;
 }
@@ -85,6 +91,11 @@ typedef enum {
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:LQShowInactiveTracksDidChangeNotification object:nil];
 }
 
 #pragma mark - header view
@@ -150,7 +161,9 @@ typedef enum {
 
 - (void)addOrRemoveOverlay
 {
-    if ([trackManager totalTracksCount] == 0)
+    if ([trackManager totalTracksCount] == 0 ||
+        (![[NSUserDefaults standardUserDefaults] boolForKey:LQShowInactiveTracksUserDefaultsKey] &&
+         [trackManager activeTracksCount] == 0))
         [self addOverlayWithTitle:@"No Tracks Yet" andText:@"You should create a track\nand share your location or\npull to refresh your tracks"];
     else
         [self removeOverlay];
@@ -171,11 +184,29 @@ typedef enum {
     }
 }
 
+- (void)showInactiveTracksDidChange:(NSNotification *)notification
+{
+    NSLog(@"received notification: %@", notification);
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [trackManager totalTracksCount] == 0 ? 0 : 2;
+    NSInteger sections;
+    if ([trackManager totalTracksCount] == 0) {
+        sections = 0;
+    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:LQShowInactiveTracksUserDefaultsKey]) {
+        sections = 2;
+    } else {
+        if ([trackManager activeTracksCount] > 0) {
+            sections = 1;
+        } else {
+            sections = 0;
+        }
+    }
+    return sections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

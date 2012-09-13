@@ -58,9 +58,9 @@
     int rows;
     BOOL showLogSettings = SHOW_LOG_SETTINGS;
     switch (section) {
-        // location
+        // location & show inactive tracks
         case 0:
-            rows = 1;
+            rows = 2;
             break;
             
         // account
@@ -94,11 +94,14 @@
     BOOL showLogSettings = SHOW_LOG_SETTINGS;
     switch (indexPath.section) {
             
-        // location
+        // location & show inactive tracks
         case 0:
             switch (indexPath.row) {
                 case 0:
                     cell = [self locationUpdateCell];
+                    break;
+                case 1:
+                    cell = [self showInactiveTracksCell];
                     break;
             }
             break;
@@ -259,6 +262,21 @@
     [defaults synchronize];
     [locationSwitch setOn:[defaults boolForKey:LQLocationEnabledUserDefaultsKey] animated:NO];
     [locationSwitch addTarget:self action:@selector(locationTrackingWasSwitched:) forControlEvents:UIControlEventValueChanged];
+    return cell;
+}
+
+- (UITableViewCell *)showInactiveTracksCell
+{
+    UITableViewCell *cell = [self getCellForId:@"showInactiveTracksCell"];
+    cell.textLabel.text = @"Show inactive tracks";
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UISwitch *showInactiveTracksSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+    cell.accessoryView = showInactiveTracksSwitch;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
+    [showInactiveTracksSwitch setOn:[defaults boolForKey:LQShowInactiveTracksUserDefaultsKey] animated:NO];
+    [showInactiveTracksSwitch addTarget:self action:@selector(showInactiveTracksWasSwitched:) forControlEvents:UIControlEventValueChanged];
     return cell;
 }
 
@@ -523,6 +541,14 @@
     [defaults setBool:sender.on forKey:LQLocationEnabledUserDefaultsKey];
     [defaults synchronize];
     [[LQTrackManager sharedManager] setTrackerProfile];
+}
+
+- (IBAction)showInactiveTracksWasSwitched:(UISwitch *)sender
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:sender.on forKey:LQShowInactiveTracksUserDefaultsKey];
+    [defaults synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LQShowInactiveTracksDidChangeNotification object:nil];
 }
 
 - (IBAction)fileLoggingWasSwitched:(UISwitch *)sender
