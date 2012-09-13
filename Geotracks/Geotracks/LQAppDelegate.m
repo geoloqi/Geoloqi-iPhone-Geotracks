@@ -158,13 +158,13 @@
     
     // this is the case only if the default key has never been assigned a value
     // have to use #objectForKey because #boolForKey will return NO for nil
-    if ([defaults objectForKey:LQLocationEnabledUserDefaultsKey] == nil) {
-        [defaults setBool:YES forKey:LQLocationEnabledUserDefaultsKey];
+    if ([defaults objectForKey:kLQLocationEnabledUserDefaultsKey] == nil) {
+        [defaults setBool:YES forKey:kLQLocationEnabledUserDefaultsKey];
     }
     
     // default to showing inactive tracks
-    if ([defaults objectForKey:LQShowInactiveTracksUserDefaultsKey] == nil) {
-        [defaults setBool:YES forKey:LQShowInactiveTracksUserDefaultsKey];
+    if ([defaults objectForKey:kLQShowInactiveTracksUserDefaultsKey] == nil) {
+        [defaults setBool:YES forKey:kLQShowInactiveTracksUserDefaultsKey];
     }
     
     [defaults synchronize];

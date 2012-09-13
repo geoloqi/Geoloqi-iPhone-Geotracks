@@ -222,7 +222,7 @@
             else {
                 NSUserDefaults *d = [NSUserDefaults standardUserDefaults];
                 [d synchronize];
-                footer = [NSString stringWithFormat:@"Currently logged in as '%@'", [d objectForKey:LQDisplayNameUserDefaultsKey]];
+                footer = [NSString stringWithFormat:@"Currently logged in as '%@'", [d objectForKey:kLQDisplayNameUserDefaultsKey]];
             }
             break;
     }
@@ -260,7 +260,7 @@
     cell.accessoryView = locationSwitch;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults synchronize];
-    [locationSwitch setOn:[defaults boolForKey:LQLocationEnabledUserDefaultsKey] animated:NO];
+    [locationSwitch setOn:[defaults boolForKey:kLQLocationEnabledUserDefaultsKey] animated:NO];
     [locationSwitch addTarget:self action:@selector(locationTrackingWasSwitched:) forControlEvents:UIControlEventValueChanged];
     return cell;
 }
@@ -275,7 +275,7 @@
     cell.accessoryView = showInactiveTracksSwitch;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults synchronize];
-    [showInactiveTracksSwitch setOn:[defaults boolForKey:LQShowInactiveTracksUserDefaultsKey] animated:NO];
+    [showInactiveTracksSwitch setOn:[defaults boolForKey:kLQShowInactiveTracksUserDefaultsKey] animated:NO];
     [showInactiveTracksSwitch addTarget:self action:@selector(showInactiveTracksWasSwitched:) forControlEvents:UIControlEventValueChanged];
     return cell;
 }
@@ -538,7 +538,7 @@
 - (IBAction)locationTrackingWasSwitched:(UISwitch *)sender
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:sender.on forKey:LQLocationEnabledUserDefaultsKey];
+    [defaults setBool:sender.on forKey:kLQLocationEnabledUserDefaultsKey];
     [defaults synchronize];
     [[LQTrackManager sharedManager] setTrackerProfile];
 }
@@ -546,9 +546,9 @@
 - (IBAction)showInactiveTracksWasSwitched:(UISwitch *)sender
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:sender.on forKey:LQShowInactiveTracksUserDefaultsKey];
+    [defaults setBool:sender.on forKey:kLQShowInactiveTracksUserDefaultsKey];
     [defaults synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:LQShowInactiveTracksDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLQShowInactiveTracksDidChangeNotification object:nil];
 }
 
 - (IBAction)fileLoggingWasSwitched:(UISwitch *)sender

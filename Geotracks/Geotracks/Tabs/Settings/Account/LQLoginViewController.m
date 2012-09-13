@@ -128,7 +128,7 @@
     [session runAPIRequest:req completion:^(NSHTTPURLResponse *response, NSDictionary *responseDictionary, NSError *error) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:[responseDictionary objectForKey:@"display_name"]
-                     forKey:LQDisplayNameUserDefaultsKey];
+                     forKey:kLQDisplayNameUserDefaultsKey];
         [defaults synchronize];
         block();
     }];

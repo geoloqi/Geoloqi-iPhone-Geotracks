@@ -50,7 +50,7 @@ typedef enum {
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(showInactiveTracksDidChange:)
-                                                 name:LQShowInactiveTracksDidChangeNotification
+                                                 name:kLQShowInactiveTracksDidChangeNotification
                                                object:nil];
     
     return self;
@@ -95,7 +95,7 @@ typedef enum {
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:LQShowInactiveTracksDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLQShowInactiveTracksDidChangeNotification object:nil];
 }
 
 #pragma mark - header view
@@ -162,7 +162,7 @@ typedef enum {
 - (void)addOrRemoveOverlay
 {
     if ([trackManager totalTracksCount] == 0 ||
-        (![[NSUserDefaults standardUserDefaults] boolForKey:LQShowInactiveTracksUserDefaultsKey] &&
+        (![[NSUserDefaults standardUserDefaults] boolForKey:kLQShowInactiveTracksUserDefaultsKey] &&
          [trackManager activeTracksCount] == 0))
         [self addOverlayWithTitle:@"No Tracks Yet" andText:@"You should create a track\nand share your location or\npull to refresh your tracks"];
     else
@@ -173,7 +173,7 @@ typedef enum {
 {
     if ([trackManager activeTracksCount] > 0 &&
         [[LQTracker sharedTracker] profile] == LQTrackerProfileOff &&
-        ![[NSUserDefaults standardUserDefaults] boolForKey:LQLocationEnabledUserDefaultsKey]) {
+        ![[NSUserDefaults standardUserDefaults] boolForKey:kLQLocationEnabledUserDefaultsKey]) {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location Disabled"
                                                         message:@"You have active tracks, but location updating is disabled on the settings tab. Your track location will not be updated until this is turned on."
@@ -197,7 +197,7 @@ typedef enum {
     NSInteger sections;
     if ([trackManager totalTracksCount] == 0) {
         sections = 0;
-    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:LQShowInactiveTracksUserDefaultsKey]) {
+    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:kLQShowInactiveTracksUserDefaultsKey]) {
         sections = 2;
     } else {
         if ([trackManager activeTracksCount] > 0) {

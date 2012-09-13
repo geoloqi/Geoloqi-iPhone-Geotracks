@@ -19,8 +19,8 @@
 #define SHOW_LOG_SETTINGS [[NSUserDefaults standardUserDefaults] boolForKey:@"com.geoloqi.geotracks.showLogSettings"]
 #define DEFAULT_TABLE_VIEW_BACKGROUND_COLOR [UIColor colorWithWhite:249.0/255.0 alpha:1.0]
 
-static NSString *const LQDisplayNameUserDefaultsKey =        @"com.geoloqi.geotracks.LQDisplayName";
-static NSString *const LQLocationEnabledUserDefaultsKey =    @"com.geoloqi.geotracks.LQLocationEnabled";
-static NSString *const LQShowInactiveTracksUserDefaultsKey = @"com.geoloqi.geotracks.LQShowInactiveTracks";
+static NSString *const kLQDisplayNameUserDefaultsKey =        @"com.geoloqi.geotracks.LQDisplayName";
+static NSString *const kLQLocationEnabledUserDefaultsKey =    @"com.geoloqi.geotracks.LQLocationEnabled";
+static NSString *const kLQShowInactiveTracksUserDefaultsKey = @"com.geoloqi.geotracks.LQShowInactiveTracks";
 
-static NSString *const LQShowInactiveTracksDidChangeNotification = @"com.geoloqi.geotracks.LQShowInactiveTracksDidChange";
+static NSString *const kLQShowInactiveTracksDidChangeNotification = @"com.geoloqi.geotracks.LQShowInactiveTracksDidChange";

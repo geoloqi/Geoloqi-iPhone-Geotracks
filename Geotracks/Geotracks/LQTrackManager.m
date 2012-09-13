@@ -182,7 +182,7 @@ static LQTrackManager *trackManager;
     if (activeTracks.count > 0) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults synchronize];
-        if ([defaults boolForKey:LQLocationEnabledUserDefaultsKey])
+        if ([defaults boolForKey:kLQLocationEnabledUserDefaultsKey])
             profile = LQTrackerProfileRealtime;
     }
     [[LQTracker sharedTracker] setProfile:profile];
