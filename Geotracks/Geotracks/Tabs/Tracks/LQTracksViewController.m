@@ -147,11 +147,11 @@ typedef enum {
             [self.tableView reloadData];
             [self addOrRemoveOverlay];
             [self verifyTrackerProfileSetting];
-
-            // Call this to indicate that we have finished "refreshing".
-            // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
-            [self refreshCompleted];
         }
+        
+        // Call this to indicate that we have finished "refreshing".
+        // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
+        [self refreshCompleted];
     }];
     
     return YES;
@@ -164,7 +164,7 @@ typedef enum {
     if ([trackManager totalTracksCount] == 0 ||
         (![[NSUserDefaults standardUserDefaults] boolForKey:kLQShowInactiveTracksUserDefaultsKey] &&
          [trackManager activeTracksCount] == 0))
-        [self addOverlayWithTitle:@"No Tracks Yet" andText:@"You should create a track\nand share your location or\npull to refresh your tracks"];
+        [self addOverlayWithTitle:@"No Tracks" andText:@"You should create a track\nand share your location or\npull to refresh your tracks"];
     else
         [self removeOverlay];
 }
