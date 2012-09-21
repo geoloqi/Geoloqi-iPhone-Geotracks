@@ -673,7 +673,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geoloqi.com";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geoloqi.com";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -688,6 +689,8 @@
 					"-lGeoloqi-Release",
 					"-ObjC",
 				);
+				PROVISIONING_PROFILE = "DF4E4D80-873A-433C-A024-DF5853E1FB6F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DF4E4D80-873A-433C-A024-DF5853E1FB6F";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
