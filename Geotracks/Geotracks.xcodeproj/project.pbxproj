@@ -126,7 +126,7 @@
 		BE7A84DD15E6E77200340B5C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		BE7FB05C15F921BE008904B9 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		BE7FB05D15F921BE008904B9 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
-		BEA68FBB16025DE800DB6C37 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		BEA68FBB16025DE800DB6C37 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		BEBB724115EC057E0007122B /* LQTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTabBarController.h; sourceTree = "<group>"; };
 		BEBB724215EC057E0007122B /* LQTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTabBarController.m; sourceTree = "<group>"; };
 		BEBB724615EC06B10007122B /* LQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQLoginViewController.h; sourceTree = "<group>"; };
@@ -236,7 +236,6 @@
 		BE7A848F15E6D3F600340B5C = {
 			isa = PBXGroup;
 			children = (
-				BEA68FBB16025DE800DB6C37 /* Default-568h@2x.png */,
 				BEBB72D115EC2B230007122B /* Icon@2x.png */,
 				BEBB72CF15EC2B1F0007122B /* Icon.png */,
 				BE7A84A415E6D3F600340B5C /* Geotracks */,
@@ -402,6 +401,7 @@
 			children = (
 				BEBB72D315EC2B420007122B /* Default.png */,
 				BEBB72D415EC2B420007122B /* Default@2x.png */,
+				BEA68FBB16025DE800DB6C37 /* Default-568h@2x.png */,
 				BEBB729615EC0D4F0007122B /* button_disabled.png */,
 				BEBB729715EC0D4F0007122B /* button_disabled@2x.png */,
 				BEBB729815EC0D4F0007122B /* button_pressed.png */,
